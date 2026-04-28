@@ -1,0 +1,30 @@
+// import { useState } from 'react'
+import ListButtons from './ListCategories.jsx'
+import ListTags from './ListTags.jsx'
+import logo from './assets/Logo.png'
+
+function Sidebar() {
+  
+
+  return (
+    <div className="sidebar-wrapper">
+      <div className="logo-wrapper">
+        <img src={logo} alt="Logo" className="logo-img"/>
+        <h2 className="logo-title">NotesApp</h2>
+      </div>
+      <div className="input-wrapper">
+        <input type="text" placeholder="Поиск заметок..." className="sidebar-input-search" />
+      </div>
+      <button className="sidebar-button">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAaUlEQVR4AexSWwoAIAir7n/n+nEwyFgggYH+KDnaA0d7XEUgA84V0bSSsgmQywEJux7LgYzKjciOZWv4bVvYA/bcXQIGRGeXoB8KZId1x567S8CA6FwEMsFcEeF6pGwC5HJAwq7H/x0sAAAA//9XuclYAAAABklEQVQDABpEODG4FEVIAAAAAElFTkSuQmCC"/>
+        <span className="sidebar-button-text">Новая заметка</span>
+        </button>
+      <ListButtons/>
+      <ListTags/>
+      
+
+    </div>
+  )
+}
+
+export default Sidebar
