@@ -5,7 +5,6 @@ function NoteItem(props) {
   const {note} = props
 
   const date = note.updatedAt.split('T')[0].split('-');
-  console.log(date)
 
 
   return (

@@ -82,7 +82,16 @@ function App() {
           addNote={addNote}
           setIsAdding={setIsAdding}
         />
-        {isAdding ? <AddNote/> : <NotesList notes={notes} filters={filters}/>}
+        {isAdding ? 
+        <AddNote 
+          notes={notes} 
+          setNotes={setNotes} 
+          setIsAdding={setIsAdding}
+        /> : 
+        <NotesList 
+          notes={notes} 
+          filters={filters}
+        />}
       </div>
   )
 }
