@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import Sidebar from './Sidebar.jsx';
 import NotesList from './NotesList.jsx'
@@ -13,59 +13,15 @@ function App() {
     filter: 'all',
   });
   // Тестовые объекта для проверки отрисовки айтемов
-  const [notes, setNotes] = useState([
-    {
-      id: 0,
-      title: 'Идея для тестового проекта',
-      content: 'Набросок с идеями для нового тестового проекта. Нужно что-нибудь, чтобы не сброситься в Неву, но и не деграднуть.',
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
-      tags: null,
-      isPinned: false,
-      color: null,
-    },
-    {
-      id: 1,
-      title: 'Я ебал кабана в жопу',
-      content: 'ДА!Я действительно ебал кабана в жопу И ВЫЕБУ ЕГО ЕЩЁ РАЗ! Даже не надейтесь что я перестану это делать.',
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
-      tags: null,
-      isPinned: false,
-      color: null,
-    },
-    {
-      id: 2,
-      title: 'Я ебал кабана в жопу',
-      content: 'ДА!Я действительно ебал кабана в жопу И ВЫЕБУ ЕГО ЕЩЁ РАЗ! Даже не надейтесь что я перестану это делать.',
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
-      tags: null,
-      isPinned: false,
-      color: null,
-    },
-    {
-      id: 3,
-      title: 'Я ебал кабана в жопу',
-      content: 'ДА!Я действительно ебал кабана в жопу И ВЫЕБУ ЕГО ЕЩЁ РАЗ! Даже не надейтесь что я перестану это делать.',
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
-      tags: null,
-      isPinned: false,
-      color: null,
-    },
-    {
-      id: 4,
-      title: 'Я ебал кабана в жопу',
-      content: 'ДА!Я действительно ебал кабана в жопу И ВЫЕБУ ЕГО ЕЩЁ РАЗ! Даже не надейтесь что я перестану это делать.',
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
-      tags: null,
-      isPinned: false,
-      color: null,
-    }
-  ])
+  const [notes, setNotes] = useState(() => {
+    const saved = localStorage.getItem('notes');
+    return saved ? JSON.parse(saved) : [];
+  })
   
+
+  useEffect(() => {
+    localStorage.setItem('notes', JSON.stringify(notes))
+  }, [notes]);
 
   function addNote(task){ 
     const result = setNotes(prev => ({

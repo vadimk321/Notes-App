@@ -127,7 +127,7 @@ ul li span {
 .notes-list-title {
   display: flex;
   align-items: flex-start;
-  padding: 30px 20px 15px 35px;
+  padding: 30px 20px 0px 35px;
   justify-content: space-between;
   /* min-width: 75vh */
 }
@@ -151,7 +151,9 @@ ul li span {
   flex-wrap: wrap;
   justify-content: flex-start;
   padding: 0px 30px 0px 32px;
-  gap: 20px
+  gap: 20px;
+  margin-top: 0px;
+  padding-top: 15px;
 }
 
 .notes-subtitle-counter {
@@ -166,7 +168,7 @@ ul li span {
   border-radius: 15px;
   width: 285px;
   height: 260px;
-  margin-top: 20px; 
+  margin-top: 10px; 
   padding: 5px 25px 20px 20px;
   box-sizing:border-box;
   position: relative
@@ -182,10 +184,18 @@ ul li span {
   font-size: 14px;
   font-family: "Inter", sans-serif;
   margin-top: 20px;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .note-title {
   text-align: left;
+  display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .note-date {
@@ -194,6 +204,9 @@ ul li span {
   bottom: 5px;
   right: 15px;
 }
+
+
+
 /* AddNote  */
 
 .new-note-wrapper {
@@ -202,7 +215,7 @@ ul li span {
   flex-direction: column ;
   background-color: #111620;
   flex: 0 0 70%;
-  padding: 30px 20px 15px 35px;
+  padding: 30px 20px 0px 35px;
 }
 
 .new-note-title-wrapper {
