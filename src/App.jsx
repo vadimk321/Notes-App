@@ -30,6 +30,13 @@ function App() {
     })
   }
 
+  function deleteNote(id) {
+    setNotes(prev => {
+      const result = prev.filter(note => note.id !== id)
+      return result
+    })
+  }
+
   return (
       <div className="main-wrapper">
         <Sidebar
@@ -47,6 +54,7 @@ function App() {
         <NotesList 
           notes={notes} 
           filters={filters}
+          deleteNote={deleteNote}
         />}
       </div>
   )

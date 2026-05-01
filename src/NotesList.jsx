@@ -5,7 +5,8 @@ function NotesList(props) {
   
   const {
     notes,
-    filters
+    filters,
+    deleteNote
   } = props
 
   // Фильтрация заметок
@@ -37,6 +38,7 @@ function NotesList(props) {
           <NoteItem 
             note={note}
             key={note.id + note.createdAt}
+            deleteNote={deleteNote}
             />))}
       </ul>
     </div>

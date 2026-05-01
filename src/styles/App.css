@@ -178,7 +178,7 @@ ul li span {
   text-align: left;
 }
 
-/* NotesItem  ----------------------------------------------------------*/
+/* NoteItem  ----------------------------------------------------------*/
 
 .note-item-wrapper-btn {
   all: unset;
@@ -245,8 +245,21 @@ ul li span {
   bottom: 5px;
   right: 15px;
 }
-
-
+/* Временная кнопка для удаления заметки  */
+.btn-del-note{
+  background-color: #4754e3;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  border: 0px;
+  border-radius: 5px;
+  padding: 10px 20px;
+  max-width: 100px;
+  cursor: pointer;
+  transition: 0.3s;
+  position: absolute;
+  right: 10px;
+  bottom: 32px;
+}
 
 /* AddNote  */
 
