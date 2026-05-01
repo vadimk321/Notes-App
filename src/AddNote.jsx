@@ -7,24 +7,26 @@ function AddNote(props) {
   const [textTitle, setTextTitle] = useState('');
 
    const {notes,
-          setNotes,
-          setIsAdding
+          setIsEdding,
+          addNote
         } = props
 
-  const handleAddNote = () => {
-    setNotes(prev => {
-      return [...prev , {
-        id: new Date().toISOString(),
-        title: textTitle,
-        content: textContent,
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-        tags: null,
-        isPinned: false,
-        color: null,
-      }]
-    })
-    setIsAdding(false)
+  function handlerAddNote(){
+    const result = {
+      id: new Date().toISOString(),
+      title: textTitle,
+      content: textContent,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+      tags: null,
+      isPinned: false,
+      color: null,
+    };
+
+    addNote(result);
+    setIsEdding(false);
+    setTextTitle('');
+    setTextContent('');
   } 
 
   return (
@@ -38,19 +40,17 @@ function AddNote(props) {
         textTitle={textTitle}
         setTextTitle={setTextTitle}
       />
-      <div className="new-note-tags-wrapper">
+      {/* <div className="new-note-tags-wrapper"> Когда нибудь тут будут теги*/}
 
-      </div>
-      {/* <div className="new-note-main-section-wrapper"> */}
+      {/* </div> */}
       <NoteTextarea
         textContent={textContent}
         setTextContent={setTextContent}  
       />
-      {/* </div> */}
       <div className="new-note-status-wrapper">
         <button 
           className="new-note-btn-add"
-          onClick={handleAddNote}
+          onClick={handlerAddNote}
         >Создать</button>
       </div>
     </div>

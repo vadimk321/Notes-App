@@ -1,18 +1,27 @@
 // import { useState } from 'react'
 
-function ListCategories() {
+function ListCategories(props) {
   
+  const {
+    setIsEdding,
+    notesCount
+  } = props
 
   return (
     <div className="list-сategories-wrapper">
       <ul className="list-сategories-list">
-        <li className="list-сategories-item">
-          <div className="list-item-wrapper">
-            <img src="" alt="" />
-            <span>Все заметки</span>
-            <span></span>
-          </div>
-        </li>
+        <button 
+          onClick={() => setIsEdding(() => false)}
+          className='list-categories-btn'
+        >
+          <li className="list-сategories-item" >
+            {/* <div className="list-item-wrapper"> */}
+              <img src="" alt="" />
+              <span>Все заметки</span>
+              <span>{notesCount}</span>
+            {/* </div> */}
+          </li>
+        </button>
         <li className="list-сategories-item">
           <div className="list-item-wrapper">
             <img src="" alt="" />

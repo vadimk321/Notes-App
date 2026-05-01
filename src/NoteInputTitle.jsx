@@ -19,7 +19,6 @@ function NoteInputTitle(props) {
         className="new-note-input"
         value={textTitle}
         onChange={handleChange}
-        disabled={textTitle.length > 60}
       />
   );
 }

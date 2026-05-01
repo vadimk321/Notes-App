@@ -8,7 +8,7 @@ import './styles/App.css';
 
 function App() {
 
-  const [isAdding, setIsAdding] = useState(false);
+  const [IsEdding, setIsEdding] = useState(false);
   const [filters, setFilters] = useState({
     filter: 'all',
   });
@@ -23,26 +23,26 @@ function App() {
     localStorage.setItem('notes', JSON.stringify(notes))
   }, [notes]);
 
-  function addNote(task){ 
-    const result = setNotes(prev => ({
-      ...prev
-    }))
+  function addNote(note){ 
 
-    return [result, task]
-    
+    setNotes(prev => {
+      return [...prev , note]
+    })
   }
 
   return (
       <div className="main-wrapper">
         <Sidebar
-          addNote={addNote}
-          setIsAdding={setIsAdding}
+          filters={filters}
+          setIsEdding={setIsEdding}
+          notesCount={notes.length}
         />
-        {isAdding ? 
+        {IsEdding ? 
         <AddNote 
           notes={notes} 
           setNotes={setNotes} 
-          setIsAdding={setIsAdding}
+          setIsEdding={setIsEdding}
+          addNote={addNote}
         /> : 
         <NotesList 
           notes={notes} 

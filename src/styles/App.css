@@ -18,8 +18,10 @@
   flex-direction: column;
   background-color: #171d28;
   padding: 0px 25px 0px 25px;
-  min-height: 100vh;
+  height: 100vh;
   flex: 0 0 21%;
+  position: sticky;
+  top: 0;
 }
 
 .logo-wrapper {
@@ -109,6 +111,26 @@ ul li span {
   text-align: left;
 }
 
+/* ListCategories  ----------------------------------------------------------*/
+
+.list-categories-btn {
+  all: unset;
+}
+
+
+.list-сategories-item {
+  display: flex;
+  justify-content: space-between;
+  border-radius: 5px;
+  padding: 5px;
+}
+.list-сategories-item:hover {
+  background-color: #222c40;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+}
+
+
 /* NotesList  ----------------------------------------------------------*/
 
 .notes-list-wrapper {
@@ -118,11 +140,7 @@ ul li span {
   flex: 0 0 75%;
 }
 
-.note-item-wrapper {
-  display: flex;
-  flex-direction: column;
-  background-color: #111620;
-}
+
 
 .notes-list-title {
   display: flex;
@@ -162,16 +180,30 @@ ul li span {
 
 /* NotesItem  ----------------------------------------------------------*/
 
+.note-item-wrapper-btn {
+  all: unset;
+}
+
 .note-item-wrapper {
-  cursor: auto;
-  border: 1px solid #242b36;
-  border-radius: 15px;
-  width: 285px;
-  height: 260px;
-  margin-top: 10px; 
+  display: flex;
+  flex-direction: column;
   padding: 5px 25px 20px 20px;
-  box-sizing:border-box;
-  position: relative
+    width: 285px;
+    height: 260px;
+    cursor: pointer;
+    border: 1px solid #242b36;
+    border-radius: 15px;
+    margin-top: 10px;
+    box-sizing: border-box;
+    position: relative;
+    background-color: #111620;
+    transition: 0.3s;
+}
+
+.note-item-wrapper:hover {
+  background-color: #222c40;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
 }
 
 .note-title {
@@ -184,18 +216,27 @@ ul li span {
   font-size: 14px;
   font-family: "Inter", sans-serif;
   margin-top: 20px;
+
+  /* Скрытие слишком длинных строк */
   display: -webkit-box;
   -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .note-title {
   text-align: left;
+
+  /* Скрытие слишком длинных строк */
   display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-word;
+  overflow-wrap: break-word;
+
 }
 
 .note-date {
@@ -253,6 +294,28 @@ ul li span {
   height: 40%;
 }
 
+.new-note-status-wrapper{
+  text-align: right;
+  margin-top: 10px;
+}
+
+.new-note-btn-add {
+  background-color: #4754e3;
+    font-family: "Inter", sans-serif;
+    font-size: 18px;
+    border: 0px;
+    border-radius: 5px;
+    padding: 15px 45px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.new-note-btn-add:hover{
+  background-color: #3642c7;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  
+}
 
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
 
