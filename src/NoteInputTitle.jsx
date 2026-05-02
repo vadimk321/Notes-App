@@ -7,10 +7,9 @@ function NoteInputTitle(props) {
     setTextTitle
   } = props
 
-
-  const handleChange = (e) => {
+  function handleChange(e) {
     setTextTitle(e.target.value);
-  };
+  }
 
   return (
     <input 

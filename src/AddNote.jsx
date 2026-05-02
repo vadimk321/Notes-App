@@ -3,23 +3,33 @@ import NoteTextarea from './NoteTextarea.jsx'
 import NoteInputTitle from './NoteInputTitle.jsx'
 
 function AddNote(props) {
-  const [textContent, setTextContent] = useState('');
-  const [textTitle, setTextTitle] = useState('');
 
    const {notes,
           setIsEdding,
-          addNote
+          addNote,
+          textContent,
+          textTitle,
+          setTextTitle,
+          setTextContent,
+          isNoteEmpty
         } = props
 
   function handlerAddNote(){
     const result = {
       id: new Date().toISOString(),
+
       title: textTitle,
       content: textContent,
+
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
-      tags: null,
+
+      tags: [],
+
       isPinned: false,
+      isFavorite: false,
+      isDeleted: false,
+
       color: null,
     };
 
@@ -51,7 +61,7 @@ function AddNote(props) {
         <button 
           className="new-note-btn-add"
           onClick={handlerAddNote}
-        >Создать</button>
+        >Сохранить</button>
       </div>
     </div>
   )

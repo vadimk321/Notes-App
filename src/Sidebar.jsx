@@ -8,7 +8,11 @@ function Sidebar(props) {
   const {
     setIsEdding,
     filters,
-    notesCount
+    notesCountAll,
+    notesCountDeleted,
+    notesCountFavorite,
+    setTextContent,
+    setTextTitle
   } = props
 
   return (
@@ -26,7 +30,11 @@ function Sidebar(props) {
         </button>
       <ListCategories 
         setIsEdding={setIsEdding}
-        notesCount={notesCount}
+        notesCountAll={notesCountAll}
+        notesCountDeleted={notesCountDeleted}
+        notesCountFavorite={notesCountFavorite}
+        setTextContent={setTextContent}
+        setTextTitle={setTextTitle}
         />
       <ListTags/>
       

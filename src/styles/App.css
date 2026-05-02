@@ -123,6 +123,7 @@ ul li span {
   justify-content: space-between;
   border-radius: 5px;
   padding: 5px;
+  min-height: 36px;
 }
 .list-сategories-item:hover {
   background-color: #222c40;
@@ -130,6 +131,24 @@ ul li span {
     transition: 0.3s;
 }
 
+.category-name {
+  display: flex;
+  align-items: center;
+}
+
+.category-name span {
+  white-space: nowrap;
+  margin-left: 15px;
+}
+
+.category-counter {
+  border-radius: 5px;
+  padding: 5px 10px;
+  color: #f9f8f9;
+  background-color: #252c38;
+  min-width: 11px;
+  text-align: center;
+}
 
 /* NotesList  ----------------------------------------------------------*/
 
@@ -215,7 +234,7 @@ ul li span {
 .note-text {
   font-size: 14px;
   font-family: "Inter", sans-serif;
-  margin-top: 20px;
+  margin-top: 10px;
 
   /* Скрытие слишком длинных строк */
   display: -webkit-box;

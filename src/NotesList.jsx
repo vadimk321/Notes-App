@@ -6,7 +6,10 @@ function NotesList(props) {
   const {
     notes,
     filters,
-    deleteNote
+    deleteNote,
+    setIsEdding,
+    setTextContent,
+    setTextTitle
   } = props
 
   // Фильтрация заметок
@@ -39,6 +42,9 @@ function NotesList(props) {
             note={note}
             key={note.id + note.createdAt}
             deleteNote={deleteNote}
+            setIsEdding={setIsEdding}
+            setTextContent={setTextContent}
+            setTextTitle={setTextTitle}
             />))}
       </ul>
     </div>
