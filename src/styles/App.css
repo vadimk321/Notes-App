@@ -264,6 +264,54 @@ ul li span {
   bottom: 5px;
   right: 15px;
 }
+
+.note-item-star-btn {
+  position: absolute;
+  top: 15px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px,
+}
+
+/* StarItem */
+
+button svg {
+  transition: transform 0.15s ease;
+}
+
+button:hover svg {
+  transform: scale(1.2);
+}
+ 
+.star {
+  width: 20px;
+  height: 20px;
+
+  fill: transparent;
+  stroke: #facc15;
+
+  transition:
+    transform 0.2s ease,
+    fill 0.2s ease;
+}
+
+/* при включении */
+.star.filled {
+  fill: #facc15;
+  transform: scale(1.2);
+}
+
+/* небольшой bounce назад */
+.star.filled:active {
+  transform: scale(1);
+}
+
+.star:hover {
+  transform: scale(1.15);
+}
+
 /* Временная кнопка для удаления заметки  */
 .btn-del-note{
   background-color: #4754e3;

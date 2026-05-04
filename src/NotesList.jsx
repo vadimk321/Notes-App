@@ -9,18 +9,29 @@ function NotesList(props) {
     deleteNote,
     setIsEdding,
     setTextContent,
-    setTextTitle
+    setTextTitle,
+    toggleFavorite
   } = props
 
   // Фильтрация заметок
   const filteredNotes = useMemo(() => {
     
-    const result = [...notes];
-    if (filters.filter === 'all') {
+    let result = [...notes];
+
+    if (filters.category === 'all') {
       return result
     }
 
-  })
+    if (filters.category === 'favorites') {
+      result = result.filter(item => item.isFavorite)
+    }
+
+    if (filters.category === 'deleted') {
+      result = result.filter(item => item.isDeleted)
+    }
+
+    return result
+  }, [notes, filters])
 
   return (
     <div className="notes-list-wrapper"> 
@@ -45,6 +56,7 @@ function NotesList(props) {
             setIsEdding={setIsEdding}
             setTextContent={setTextContent}
             setTextTitle={setTextTitle}
+            toggleFavorite={toggleFavorite}
             />))}
       </ul>
     </div>

@@ -7,7 +7,7 @@ function Sidebar(props) {
 
   const {
     setIsEdding,
-    filters,
+    setFilters,
     notesCountAll,
     notesCountDeleted,
     notesCountFavorite,
@@ -35,6 +35,7 @@ function Sidebar(props) {
         notesCountFavorite={notesCountFavorite}
         setTextContent={setTextContent}
         setTextTitle={setTextTitle}
+        setFilters={setFilters}
         />
       <ListTags/>
       

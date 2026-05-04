@@ -12,7 +12,7 @@ function App() {
   const [textTitle, setTextTitle] = useState('');
   const [IsEdding, setIsEdding] = useState(false);
   const [filters, setFilters] = useState({
-    filter: 'all',
+    category: 'all',
   });
   // Тестовые объекта для проверки отрисовки айтемов
   const [notes, setNotes] = useState(() => {
@@ -24,6 +24,10 @@ function App() {
   useEffect(() => {
     localStorage.setItem('notes', JSON.stringify(notes))
   }, [notes]);
+
+   useEffect(() => {
+    console.log(filters)
+  }, []);
 
   function addNote(note){ 
 
@@ -41,10 +45,20 @@ function App() {
     })
   }
 
+  function toggleFavorite(id) {
+  setNotes(prev =>
+    prev.map(note =>
+      note.id === id
+        ? { ...note, isFavorite: !note.isFavorite }
+        : note
+    )
+  );
+};
+
   return (
       <div className="main-wrapper">
         <Sidebar
-          filters={filters}
+          setFilters={setFilters}
           setIsEdding={setIsEdding}
           notesCountAll={notes.filter((note) => !note.isDeleted).length}
           notesCountDeleted={notes.filter((note) => note.isDeleted).length}
@@ -71,6 +85,7 @@ function App() {
           setIsEdding={setIsEdding}
           setTextContent={setTextContent}
           setTextTitle={setTextTitle}
+          toggleFavorite={toggleFavorite}
         />}
       </div>
   )
