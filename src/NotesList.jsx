@@ -14,21 +14,41 @@ function NotesList(props) {
     setFilters
   } = props
 
+  // Название текущего раздела.
+  const categorySubtitle = useMemo(() => {
+    
+    let category = '';
+
+    if (filters.category === 'all') {
+      category = 'Все заметки';
+    }
+
+    if (filters.category === 'favorites') {
+      category = 'Избранные';
+    }
+
+    if (filters.category === 'deleted') {
+      category = 'Удалённые';
+    }
+
+    return category
+  }, [filters])
+
   // Фильтрация заметок
   const filteredNotes = useMemo(() => {
     
     let result = [...notes];
 
     if (filters.category === 'all') {
-      result = result.filter(note => !note.isDeleted)
+      result = result.filter(note => !note.isDeleted);
     }
 
     if (filters.category === 'favorites') {
-      result = result.filter(note => note.isFavorite)
+      result = result.filter(note => note.isFavorite);
     }
 
     if (filters.category === 'deleted') {
-      result = result.filter(note => note.isDeleted)
+      result = result.filter(note => note.isDeleted);
     }
 
     return result
@@ -38,9 +58,9 @@ function NotesList(props) {
     <div className="notes-list-wrapper"> 
       <div className="notes-list-title">
         <div>
-          <h2>Все заметки</h2>
+          <h2>{categorySubtitle}</h2>
           <h5 className="notes-subtitle-counter">
-            Заметок: {notes.length} 
+            Заметок: {filteredNotes.length} 
           </h5>
         </div>
         <button className="switch-theme-btn">
