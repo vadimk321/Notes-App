@@ -7,12 +7,13 @@ function Sidebar(props) {
 
   const {
     setIsEdding,
+    setTextContent,
+    setTextTitle,
+    filters,
     setFilters,
     notesCountAll,
     notesCountDeleted,
     notesCountFavorite,
-    setTextContent,
-    setTextTitle
   } = props
 
   return (
@@ -24,7 +25,15 @@ function Sidebar(props) {
       <div className="input-wrapper">
         <input type="text" placeholder="Поиск заметок..." className="sidebar-input-search" />
       </div>
-      <button className="sidebar-button" onClick={() => (setIsEdding(true))}>
+      <button 
+        className="sidebar-button" 
+        onClick={() => {
+          setIsEdding(true);
+          setFilters(prev => ({
+           ...prev,
+           category: ''
+          }))
+      }}>
         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAaUlEQVR4AexSWwoAIAir7n/n+nEwyFgggYH+KDnaA0d7XEUgA84V0bSSsgmQywEJux7LgYzKjciOZWv4bVvYA/bcXQIGRGeXoB8KZId1x567S8CA6FwEMsFcEeF6pGwC5HJAwq7H/x0sAAAA//9XuclYAAAABklEQVQDABpEODG4FEVIAAAAAElFTkSuQmCC"/>
         <span className="sidebar-button-text">Новая заметка</span>
         </button>
@@ -36,6 +45,7 @@ function Sidebar(props) {
         setTextContent={setTextContent}
         setTextTitle={setTextTitle}
         setFilters={setFilters}
+        filters={filters}
         />
       <ListTags/>
       

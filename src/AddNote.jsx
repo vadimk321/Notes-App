@@ -11,6 +11,7 @@ function AddNote(props) {
           textTitle,
           setTextTitle,
           setTextContent,
+          setFilters,
           isNoteEmpty
         } = props
 
@@ -33,6 +34,10 @@ function AddNote(props) {
       color: null,
     };
 
+    setFilters(prev => ({
+      ...prev,
+      category: 'all'
+    }))
     addNote(result);
     setIsEdding(false);
     setTextTitle('');

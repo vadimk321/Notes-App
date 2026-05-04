@@ -10,7 +10,8 @@ function NotesList(props) {
     setIsEdding,
     setTextContent,
     setTextTitle,
-    toggleFavorite
+    toggleFavorite,
+    setFilters
   } = props
 
   // Фильтрация заметок
@@ -19,15 +20,15 @@ function NotesList(props) {
     let result = [...notes];
 
     if (filters.category === 'all') {
-      return result
+      result = result.filter(note => !note.isDeleted)
     }
 
     if (filters.category === 'favorites') {
-      result = result.filter(item => item.isFavorite)
+      result = result.filter(note => note.isFavorite)
     }
 
     if (filters.category === 'deleted') {
-      result = result.filter(item => item.isDeleted)
+      result = result.filter(note => note.isDeleted)
     }
 
     return result
@@ -57,6 +58,7 @@ function NotesList(props) {
             setTextContent={setTextContent}
             setTextTitle={setTextTitle}
             toggleFavorite={toggleFavorite}
+            setFilters={setFilters}
             />))}
       </ul>
     </div>

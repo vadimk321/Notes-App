@@ -124,7 +124,16 @@ ul li span {
   border-radius: 5px;
   padding: 5px;
   min-height: 36px;
+  margin-top: 3px;
+  transition: 0.3s;
 }
+
+.list-сategories-item.active {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  background-color: #222c40;
+}
+
 .list-сategories-item:hover {
   background-color: #222c40;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
@@ -267,15 +276,15 @@ ul li span {
 
 .note-item-star-btn {
   position: absolute;
-  top: 15px;
   right: 10px;
+  bottom: 32px;
   background: transparent;
   border: none;
   cursor: pointer;
   padding: 4px,
 }
 
-/* StarItem */
+/* StarIcon */
 
 button svg {
   transition: transform 0.15s ease;
@@ -288,22 +297,26 @@ button:hover svg {
 .star {
   width: 20px;
   height: 20px;
-
   fill: transparent;
   stroke: #facc15;
-
   transition:
     transform 0.2s ease,
     fill 0.2s ease;
 }
 
-/* при включении */
+
+.delete-icon:hover {
+  transform: scale(1.2);
+  stroke: #dc2626;
+}
+
+
 .star.filled {
   fill: #facc15;
   transform: scale(1.2);
 }
 
-/* небольшой bounce назад */
+
 .star.filled:active {
   transform: scale(1);
 }
@@ -312,20 +325,29 @@ button:hover svg {
   transform: scale(1.15);
 }
 
-/* Временная кнопка для удаления заметки  */
-.btn-del-note{
-  background-color: #4754e3;
-  font-family: "Inter", sans-serif;
-  font-size: 14px;
-  border: 0px;
-  border-radius: 5px;
-  padding: 10px 20px;
-  max-width: 100px;
-  cursor: pointer;
+
+/* DeleteIcon */
+
+.note-item-del-btn {
   transition: 0.3s;
   position: absolute;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  top: 15px;
   right: 10px;
-  bottom: 32px;
+}
+
+.delete-icon {
+  width: 18px;
+  height: 18px;
+  stroke: #ef4444;
+  stroke-width: 2;
+  stroke-linecap: round;
+  transition:
+    transform 0.15s ease,
+    stroke 0.15s ease;
 }
 
 /* AddNote  */

@@ -9,7 +9,8 @@ function ListCategories(props) {
     notesCountFavorite,
     setTextTitle,
     setTextContent,
-    setFilters
+    setFilters,
+    filters
   } = props
 
 
@@ -22,7 +23,9 @@ function ListCategories(props) {
   return (
     <div className="list-сategories-wrapper">
       <ul className="list-сategories-list">
-        <li className="list-сategories-item" onClick={() => {
+        <li 
+          className={`list-сategories-item ${filters.category === 'all' ? 'active' : ''}`}
+          onClick={() => {
           setCategory('all');
           setIsEdding(false);
           setTextTitle('');
@@ -34,7 +37,9 @@ function ListCategories(props) {
             </div>
             <span className="category-counter">{notesCountAll}</span>
         </li>
-        <li className="list-сategories-item" onClick={() => {
+        <li 
+          className={`list-сategories-item ${filters.category === 'favorites' ? 'active' : ''}`}
+          onClick={() => {
           setCategory('favorites');
           setIsEdding(false);
           setTextTitle('');
@@ -48,7 +53,10 @@ function ListCategories(props) {
             ? <span className="category-counter">{notesCountFavorite}</span>
             : null}
         </li>
-        <li className="list-сategories-item" onClick={() => {
+        <li 
+          className={`list-сategories-item ${filters.category === 'deleted' ? 'active' : ''}`}
+          onClick={() => {
+          setCategory('deleted');
           setIsEdding(false);
           setTextTitle('');
           setTextContent('');

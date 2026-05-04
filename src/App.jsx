@@ -40,8 +40,7 @@ function App() {
 
   function deleteNote(id) {
     setNotes(prev => {
-      const result = prev.filter(note => note.id !== id)
-      return result
+      return prev.map(note => note.id === id ? {...note,isDeleted: true, isFavorite: false} : note)
     })
   }
 
@@ -65,6 +64,7 @@ function App() {
           notesCountFavorite={notes.filter((note) => note.isFavorite).length}
           setTextContent={setTextContent}
           setTextTitle={setTextTitle}
+          filters={filters}
         />
         {IsEdding ? 
         <AddNote 
@@ -76,6 +76,7 @@ function App() {
           setTextContent={setTextContent}
           textTitle={textTitle}
           setTextTitle={setTextTitle}
+          setFilters={setFilters}
           isNoteEmpty={textContent.length > 0 && textTitle.length > 0}
         /> : 
         <NotesList 
@@ -86,6 +87,7 @@ function App() {
           setTextContent={setTextContent}
           setTextTitle={setTextTitle}
           toggleFavorite={toggleFavorite}
+          setFilters={setFilters}
         />}
       </div>
   )
