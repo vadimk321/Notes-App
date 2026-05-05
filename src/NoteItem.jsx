@@ -8,12 +8,13 @@ function NoteItem(props) {
   const {
     note,
     deleteNote,
-    setIsEdding,
-    setTextContent,
-    setTextTitle,
+    // setIsEdding,
+    // setTextContent,
+    // setTextTitle,
     toggleFavorite,
     setFilters,
-    restoreNote
+    restoreNote,
+    setEditingId
   } = props
 
   const date = note.updatedAt.split('T')[0].split('-');
@@ -29,9 +30,10 @@ function NoteItem(props) {
   }
 
   function editNote(){
-    setTextTitle(note.title)
-    setTextContent(note.content)
-    setIsEdding(true);
+    // setTextTitle(note.title)
+    // setTextContent(note.content)
+    // setIsEdding(true);
+    setEditingId(note.id)
     setFilters(prev => ({
       ...prev,
       category: ''

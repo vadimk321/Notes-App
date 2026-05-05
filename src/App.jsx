@@ -2,24 +2,24 @@ import { useState, useEffect } from 'react';
 
 import Sidebar from './Sidebar.jsx';
 import NotesList from './NotesList.jsx'
-import AddNote from './AddNote.jsx'
+import NoteEditor from './NoteEditor.jsx'
 
 import './styles/App.css';
 
 function App() {
 
-  const [textContent, setTextContent] = useState('');
-  const [textTitle, setTextTitle] = useState('');
-  const [IsEdding, setIsEdding] = useState(false);
+  const [editingId, setEditingId] = useState(null);
   const [filters, setFilters] = useState({
     category: 'all',
   });
-  // Тестовые объекта для проверки отрисовки айтемов
+
+
   const [notes, setNotes] = useState(() => {
     const saved = localStorage.getItem('notes');
     return saved ? JSON.parse(saved) : [];
   })
   
+  const editingNote = notes.find(n => n.id === editingId);
 
   useEffect(() => {
     localStorage.setItem('notes', JSON.stringify(notes))
@@ -34,8 +34,6 @@ function App() {
     setNotes(prev => {
       return [...prev , note]
     })
-    setTextContent('')
-    setTextTitle('')
   }
 
   function deleteNote(id) {
@@ -64,37 +62,28 @@ function App() {
       <div className="main-wrapper">
         <Sidebar
           setFilters={setFilters}
-          setIsEdding={setIsEdding}
           notesCountAll={notes.filter((note) => !note.isDeleted).length}
           notesCountDeleted={notes.filter((note) => note.isDeleted).length}
           notesCountFavorite={notes.filter((note) => note.isFavorite).length}
-          setTextContent={setTextContent}
-          setTextTitle={setTextTitle}
           filters={filters}
+          setEditingId={setEditingId}
         />
-        {IsEdding ? 
-        <AddNote 
+        {editingId 
+        ? <NoteEditor 
           notes={notes} 
           setNotes={setNotes} 
-          setIsEdding={setIsEdding}
           addNote={addNote}
-          textContent={textContent}
-          setTextContent={setTextContent}
-          textTitle={textTitle}
-          setTextTitle={setTextTitle}
           setFilters={setFilters}
-          isNoteEmpty={textContent.length > 0 && textTitle.length > 0}
-        /> : 
-        <NotesList 
+          setEditingId={setEditingId}
+        /> 
+        : <NotesList 
           notes={notes} 
           filters={filters}
           deleteNote={deleteNote}
-          setIsEdding={setIsEdding}
-          setTextContent={setTextContent}
-          setTextTitle={setTextTitle}
           toggleFavorite={toggleFavorite}
           setFilters={setFilters}
           restoreNote={restoreNote}
+          setEditingId={setEditingId}
         />}
       </div>
   )

@@ -8,11 +8,12 @@ function NotesList(props) {
     filters,
     deleteNote,
     setIsEdding,
-    setTextContent,
-    setTextTitle,
+    // setTextContent,
+    // setTextTitle,
     toggleFavorite,
     setFilters,
-    restoreNote
+    restoreNote,
+    setEditingId
   } = props
 
   // Название текущего раздела.
@@ -76,12 +77,12 @@ function NotesList(props) {
             note={note}
             key={note.id + note.createdAt}
             deleteNote={deleteNote}
-            setIsEdding={setIsEdding}
-            setTextContent={setTextContent}
-            setTextTitle={setTextTitle}
+            // setTextContent={setTextContent}
+            // setTextTitle={setTextTitle}
             toggleFavorite={toggleFavorite}
             setFilters={setFilters}
             restoreNote={restoreNote}
+            setEditingId={setEditingId}
             />))
              : 
              <h2 className="category-empty-title">{`Пока в разделе «${categorySubtitle}» нет заметок`}</h2>}

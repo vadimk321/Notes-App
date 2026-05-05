@@ -3,12 +3,9 @@ import {} from "react";
 function NoteInputTitle(props) {
 
   const {
-    textTitle,
-    setTextTitle
   } = props
 
   function handleChange(e) {
-    setTextTitle(e.target.value);
   }
 
   return (
@@ -16,7 +13,6 @@ function NoteInputTitle(props) {
         type="text" 
         placeholder="Заголовок заметки..." 
         className="new-note-input"
-        value={textTitle}
         onChange={handleChange}
       />
   );
