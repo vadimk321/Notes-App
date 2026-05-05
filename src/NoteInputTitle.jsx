@@ -3,17 +3,17 @@ import {} from "react";
 function NoteInputTitle(props) {
 
   const {
+    value,
+    onChange
   } = props
 
-  function handleChange(e) {
-  }
-
   return (
-    <input 
+    <input
+        value={value}
         type="text" 
         placeholder="Заголовок заметки..." 
         className="new-note-input"
-        onChange={handleChange}
+        onChange={(e) => onChange(e.target.value)}
       />
   );
 }

@@ -6,15 +6,13 @@ import logo from './assets/Logo.png'
 function Sidebar(props) {
 
   const {
-    // setIsEdding,
-    // setTextContent,
-    // setTextTitle,
     filters,
     setFilters,
     notesCountAll,
     notesCountDeleted,
     notesCountFavorite,
-    setEditingId
+    setEditingId,
+    setNotes
   } = props
 
   return (
@@ -34,16 +32,16 @@ function Sidebar(props) {
             
             title: "",
             content: "",
-            createdAt: Date.now(),
-            updatedAt: Date.now(),
+            createdAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString(),
             tags: [],
             isPinned: false,
             isFavorite: false,
             isDeleted: false,
           };
 
-  setNotes(prev => [...prev, newNote]);
-  setEditingId(newNote.id);
+          setNotes(prev => [...prev, newNote]);
+          setEditingId(newNote.id);
 }}>
         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAaUlEQVR4AexSWwoAIAir7n/n+nEwyFgggYH+KDnaA0d7XEUgA84V0bSSsgmQywEJux7LgYzKjciOZWv4bVvYA/bcXQIGRGeXoB8KZId1x567S8CA6FwEMsFcEeF6pGwC5HJAwq7H/x0sAAAA//9XuclYAAAABklEQVQDABpEODG4FEVIAAAAAElFTkSuQmCC"/>
         <span className="sidebar-button-text">Новая заметка</span>
@@ -52,9 +50,6 @@ function Sidebar(props) {
         notesCountAll={notesCountAll}
         notesCountDeleted={notesCountDeleted}
         notesCountFavorite={notesCountFavorite}
-        // setIsEdding={setIsEdding}
-        // setTextContent={setTextContent}
-        // setTextTitle={setTextTitle}
         setFilters={setFilters}
         filters={filters}
         />

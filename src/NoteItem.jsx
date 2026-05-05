@@ -8,16 +8,13 @@ function NoteItem(props) {
   const {
     note,
     deleteNote,
-    // setIsEdding,
-    // setTextContent,
-    // setTextTitle,
     toggleFavorite,
     setFilters,
     restoreNote,
     setEditingId
   } = props
 
-  const date = note.updatedAt.split('T')[0].split('-');
+  const date = note.createdAt.split('T')[0].split('-');
 
   function handlerDeleteNote(e, id) {
     e.stopPropagation();
@@ -30,9 +27,6 @@ function NoteItem(props) {
   }
 
   function editNote(){
-    // setTextTitle(note.title)
-    // setTextContent(note.content)
-    // setIsEdding(true);
     setEditingId(note.id)
     setFilters(prev => ({
       ...prev,
@@ -78,7 +72,6 @@ function NoteItem(props) {
           >
             <StarIcon  filled={note.isFavorite}/>
           </button> : null}
-        {/* Временная кнопка */}
       </li> 
     </div>
   )

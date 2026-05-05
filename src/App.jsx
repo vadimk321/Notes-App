@@ -18,24 +18,14 @@ function App() {
     const saved = localStorage.getItem('notes');
     return saved ? JSON.parse(saved) : [];
   })
-  
+
+  // Нужен для передачи в едитор при клике на таск
   const editingNote = notes.find(n => n.id === editingId);
 
   useEffect(() => {
     localStorage.setItem('notes', JSON.stringify(notes))
   }, [notes]);
-
-   useEffect(() => {
-    console.log(filters)
-  }, []);
-
-  function addNote(note){ 
-
-    setNotes(prev => {
-      return [...prev , note]
-    })
-  }
-
+  
   function deleteNote(id) {
     setNotes(prev => {
       return prev.map(note => note.id === id ? {...note,isDeleted: true, isFavorite: false} : note)
@@ -67,12 +57,12 @@ function App() {
           notesCountFavorite={notes.filter((note) => note.isFavorite).length}
           filters={filters}
           setEditingId={setEditingId}
+          setNotes={setNotes}
         />
         {editingId 
         ? <NoteEditor 
-          notes={notes} 
+          note={editingNote}
           setNotes={setNotes} 
-          addNote={addNote}
           setFilters={setFilters}
           setEditingId={setEditingId}
         /> 

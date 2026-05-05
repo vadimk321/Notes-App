@@ -3,7 +3,8 @@ import {useRef, useEffect} from "react";
 function NoteTextarea(props) {
   const textareaRef = useRef(null);
   const {
-
+    value,
+    onChange
   } = props
 
   
@@ -23,16 +24,18 @@ function NoteTextarea(props) {
   const handleChange = (e) => {
     const el = e.target;
     autoResize(el);
-    // setTextContent(e.target.value);
   };
 
   return (
     <textarea
       ref={textareaRef}
-      onChange={handleChange}
+      onChange={(e) => {
+        onChange(e.target.value);
+        handleChange;
+      }}
       placeholder="Начни писать свою заметку..."
       className="new-note-main-section"
-      // value={textContent}
+      value={value}
       
     />
   );

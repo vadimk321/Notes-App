@@ -7,9 +7,6 @@ function NotesList(props) {
     notes,
     filters,
     deleteNote,
-    setIsEdding,
-    // setTextContent,
-    // setTextTitle,
     toggleFavorite,
     setFilters,
     restoreNote,
@@ -77,8 +74,6 @@ function NotesList(props) {
             note={note}
             key={note.id + note.createdAt}
             deleteNote={deleteNote}
-            // setTextContent={setTextContent}
-            // setTextTitle={setTextTitle}
             toggleFavorite={toggleFavorite}
             setFilters={setFilters}
             restoreNote={restoreNote}
