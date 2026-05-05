@@ -1,6 +1,7 @@
 // import { useState } from 'react'
 import StarIcon from './StarIcon.jsx'
 import DeleteIcon from './DeleteIcon.jsx'
+import RestoreIcon from './RestoreIcon.jsx';
 
 function NoteItem(props) {
   
@@ -11,14 +12,20 @@ function NoteItem(props) {
     setTextContent,
     setTextTitle,
     toggleFavorite,
-    setFilters
+    setFilters,
+    restoreNote
   } = props
 
   const date = note.updatedAt.split('T')[0].split('-');
 
-  function handlerDeleteNote(e,id) {
-    e.stopPropagation()
-    deleteNote(id)
+  function handlerDeleteNote(e, id) {
+    e.stopPropagation();
+    deleteNote(id);
+  }
+
+  function handlerRestoreNote(e, id) { 
+    e.stopPropagation();
+    restoreNote(id);
   }
 
   function editNote(){
@@ -40,25 +47,35 @@ function NoteItem(props) {
       <li className="note-item-wrapper">
         <div>
           <h5 className="note-title">{note.title}</h5>
-          <button 
-          onClick={(e) => {handlerDeleteNote(e, note.id)}}
-          className="note-item-del-btn"
-          >
-            <DeleteIcon/>  
-          </button>
+          
+            {!note.isDeleted 
+            ? <button 
+                onClick={(e) => {handlerDeleteNote(e, note.id)}}
+                className="note-item-del-btn"
+              >
+                <DeleteIcon/> 
+              </button>
+            : <button 
+                onClick={(e) => {handlerRestoreNote(e, note.id)}}
+                className="note-item-del-btn"
+              >
+                <RestoreIcon/>
+              </button>  }
+         
         </div>
         <p className="note-text">{note.content}</p>
         <span className="note-date">{`${date[2]}.${date[1]}.${date[0].split('')[2]}${date[0].split('')[3]}`}</span>
          
-          <button
-            onClick={(e) => {
+          {!note.isDeleted 
+          ? <button
+              onClick={(e) => {
               e.stopPropagation();
               handlerToggleFavorite();
             }}
             className="note-item-star-btn"
           >
             <StarIcon  filled={note.isFavorite}/>
-          </button>
+          </button> : null}
         {/* Временная кнопка */}
       </li> 
     </div>

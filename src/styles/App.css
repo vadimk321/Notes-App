@@ -210,6 +210,15 @@ ul li span {
   text-align: left;
 }
 
+.category-empty-title {
+  font-family: "Inter", sans-serif;
+  margin: 0 auto;
+  margin-top: 300px;
+  color: #a1a9bd;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
 /* NoteItem  ----------------------------------------------------------*/
 
 .note-item-wrapper-btn {
@@ -309,12 +318,6 @@ button:hover svg {
 }
 
 
-.delete-icon:hover {
-  transform: scale(1.2);
-  stroke: #dc2626;
-}
-
-
 .star.filled {
   fill: #facc15;
   transform: scale(1.2);
@@ -339,7 +342,7 @@ button:hover svg {
   border: none;
   cursor: pointer;
   padding: 4px;
-  top: 15px;
+  top: 10px;
   right: 10px;
 }
 
@@ -352,6 +355,28 @@ button:hover svg {
   transition:
     transform 0.15s ease,
     stroke 0.15s ease;
+}
+
+.delete-icon:hover {
+  transform: scale(1.2);
+  stroke: #dc2626;
+}
+
+/* RestoreIcon */
+
+.restore-icon {
+  width: 18px;
+  height: 18px;
+
+  color: #22c55e;
+  /* зелёный (восстановление) */
+
+  transition: transform 0.15s ease, color 0.15s ease;
+}
+
+.restore-icon:hover {
+  transform: scale(1.2);
+  color: #16a34a;
 }
 
 /* AddNote  */

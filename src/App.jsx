@@ -44,6 +44,12 @@ function App() {
     })
   }
 
+  function restoreNote(id) {
+    setNotes(prev => {
+      return prev.map(note => note.id === id ? {...note,isDeleted: false, isFavorite: false} : note)
+    })
+  }
+
   function toggleFavorite(id) {
   setNotes(prev =>
     prev.map(note =>
@@ -88,6 +94,7 @@ function App() {
           setTextTitle={setTextTitle}
           toggleFavorite={toggleFavorite}
           setFilters={setFilters}
+          restoreNote={restoreNote}
         />}
       </div>
   )

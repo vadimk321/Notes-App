@@ -11,7 +11,8 @@ function NotesList(props) {
     setTextContent,
     setTextTitle,
     toggleFavorite,
-    setFilters
+    setFilters,
+    restoreNote
   } = props
 
   // Название текущего раздела.
@@ -28,7 +29,7 @@ function NotesList(props) {
     }
 
     if (filters.category === 'deleted') {
-      category = 'Удалённые';
+      category = 'Корзина';
     }
 
     return category
@@ -68,8 +69,9 @@ function NotesList(props) {
         </button>
       </div>
       <hr className="notes-list-hr"/>
-      <ul className ="notes-list-group">
-        {filteredNotes.map(note => (
+      <ul 
+        className ="notes-list-group">
+        {filteredNotes.length > 0 ? filteredNotes.map(note => (
           <NoteItem 
             note={note}
             key={note.id + note.createdAt}
@@ -79,7 +81,10 @@ function NotesList(props) {
             setTextTitle={setTextTitle}
             toggleFavorite={toggleFavorite}
             setFilters={setFilters}
-            />))}
+            restoreNote={restoreNote}
+            />))
+             : 
+             <h2 className="category-empty-title">{`Пока в разделе «${categorySubtitle}» нет заметок`}</h2>}
       </ul>
     </div>
   )
