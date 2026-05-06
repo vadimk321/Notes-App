@@ -8,7 +8,8 @@ function NoteEditor(props) {
           note,
           setNotes, 
           setFilters,
-          setEditingId
+          setEditingId,
+          exitEditor
         } = props
 
   function handleChange(field, value) {
@@ -25,18 +26,6 @@ function NoteEditor(props) {
     )
   }
 
-  function handleClose() {
-    if (!note.title && !note.content) {
-      setNotes(prev => prev.filter(item => item.id !== note.id));
-    }
-
-    setFilters(prev => ({
-      ...prev,
-      category: 'all'
-    }));
-
-    setEditingId(null);
-  }
 
   return (
     <div className="new-note-wrapper">
@@ -59,7 +48,7 @@ function NoteEditor(props) {
       <div className="new-note-status-wrapper">
         <button 
           className="new-note-btn-add"
-          onClick={handleClose}
+          onClick={exitEditor}
         >Готово</button>
       </div>
     </div>

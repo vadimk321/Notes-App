@@ -31,7 +31,7 @@ function NoteTextarea(props) {
       ref={textareaRef}
       onChange={(e) => {
         onChange(e.target.value);
-        handleChange;
+        handleChange(e);
       }}
       placeholder="Начни писать свою заметку..."
       className="new-note-main-section"

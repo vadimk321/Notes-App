@@ -25,6 +25,8 @@ function App() {
   useEffect(() => {
     localStorage.setItem('notes', JSON.stringify(notes))
   }, [notes]);
+
+
   
   function deleteNote(id) {
     setNotes(prev => {
@@ -46,7 +48,15 @@ function App() {
         : note
     )
   );
-};
+  };
+
+  function exitEditor() {
+    if (editingNote && !editingNote.title && !editingNote.content) {
+      setNotes(prev => prev.filter(item => item.id !== editingNote.id));
+    }
+
+    setEditingId(null);
+  }
 
   return (
       <div className="main-wrapper">
@@ -58,6 +68,7 @@ function App() {
           filters={filters}
           setEditingId={setEditingId}
           setNotes={setNotes}
+          exitEditor={exitEditor}
         />
         {editingId 
         ? <NoteEditor 
@@ -65,6 +76,7 @@ function App() {
           setNotes={setNotes} 
           setFilters={setFilters}
           setEditingId={setEditingId}
+          exitEditor={exitEditor}
         /> 
         : <NotesList 
           notes={notes} 
