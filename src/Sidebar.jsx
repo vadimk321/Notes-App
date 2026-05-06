@@ -13,7 +13,8 @@ function Sidebar(props) {
     notesCountFavorite,
     setEditingId,
     setNotes,
-    exitEditor
+    exitEditor,
+    allTags
   } = props
 
   return (
@@ -60,8 +61,10 @@ function Sidebar(props) {
         setEditingId={setEditingId}
         exitEditor={exitEditor}
         />
-      <ListTags/>
-      
+      <h4 className="list-tags-title">ТЕГИ</h4>
+      <ul>
+        {allTags ? allTags.map((tag) => <ListTags tag={tag}/>) : null}
+      </ul>
 
     </div>
   )

@@ -379,7 +379,7 @@ button:hover svg {
   color: #16a34a;
 }
 
-/* AddNote  */
+/* NoteEditor  */
 
 .new-note-wrapper {
   translate: 0.5s;
@@ -441,11 +441,24 @@ button:hover svg {
     transition: 0.3s;
 }
 
+.new-note-tags-wrapper {
+  padding: 10px 0px 10px 0px;
+  display: flex;
+}
+
 .new-note-btn-add:hover{
   background-color: #3642c7;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   transition: 0.3s;
-  
+}
+
+.new-note-tags-title {
+  display: flex;
+  align-items: center
+}
+
+.new-note-tags-title span{
+  margin-left: 10px;
 }
 
 /*----------------------------------------------------------------------------------------------------------------------------------------*/

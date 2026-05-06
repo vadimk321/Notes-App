@@ -19,6 +19,11 @@ function App() {
     return saved ? JSON.parse(saved) : [];
   })
 
+  const [allTags, setAllTags] = useState(() => {
+    const saved = localStorage.getItem('tags');
+    return saved ? JSON.parse(saved) : [];
+  })
+
   // Нужен для передачи в едитор при клике на таск
   const editingNote = notes.find(n => n.id === editingId);
 
@@ -26,7 +31,9 @@ function App() {
     localStorage.setItem('notes', JSON.stringify(notes))
   }, [notes]);
 
-
+  useEffect(() => {
+    localStorage.setItem('tags', JSON.stringify(allTags))
+  }, [allTags]);
   
   function deleteNote(id) {
     setNotes(prev => {
@@ -69,14 +76,15 @@ function App() {
           setEditingId={setEditingId}
           setNotes={setNotes}
           exitEditor={exitEditor}
+          allTags={allTags}
         />
         {editingId 
         ? <NoteEditor 
           note={editingNote}
           setNotes={setNotes} 
-          setFilters={setFilters}
-          setEditingId={setEditingId}
           exitEditor={exitEditor}
+          setAllTags={setAllTags}
+          allTags={allTags}
         /> 
         : <NotesList 
           notes={notes} 
