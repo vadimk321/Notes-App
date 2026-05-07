@@ -5,13 +5,32 @@ import TagItem from './TagItem.jsx'
 
 function NoteEditor(props) {
 
-   const {
+
+
+  const {
           note,
           setNotes, 
           exitEditor,
           setAllTags,
           allTags
         } = props
+
+  const [selectedColor, setSelectedColor] = useState(null);
+  const [isTagPopupOpen, setIsTagPopupOpen] = useState(false);
+
+  const colors = [
+  "purple",
+  "blue",
+  "green",
+  "yellow",
+  "orange",
+  "red",
+  "pink",
+  "bright-blue"
+];
+
+// Если не выбран цвет, то он выбирается случайно из пула colors
+const randomColor = colors[Math.floor(Math.random() * colors.length)];
 
   function handleChange(field, value) {
     setNotes(prev =>
@@ -45,8 +64,41 @@ function NoteEditor(props) {
         </div>
         <ul>
           {allTags ? allTags.map((tag) => <TagItem tag={tag}/>) : null}
+          <button 
+            className="tag-add-btn"
+            onClick={() => setIsTagPopupOpen(prev => !prev)}>+ Добавить тег</button>
         </ul>
-        
+        {isTagPopupOpen ? 
+        <div className="tag-popup">
+          <div className="tag-popup-title-wrapper">
+            <h4 className="tag-popup-title">Новый тег</h4>
+            {/* <img src="" alt="" />  */}
+          </div>
+
+          <div className="tag-popup-input-wrapper">
+            <p className="tag-popup-subtite">Название тега</p>
+            <input type="text" />
+          </div>
+
+          <p className="tag-popup-color-text">Цвет</p>
+
+          <div className="tag-popup-colors-wrapper">
+            <button className={`tag-popup-color-btn purple ${selectedColor === 'purple' ? 'active' : ''}`} onClick={() => setSelectedColor('purple')}></button>
+            <button className={`tag-popup-color-btn blue ${selectedColor === 'blue' ? 'active' : ''}`} onClick={() => setSelectedColor('blue')}></button>
+            <button className={`tag-popup-color-btn green ${selectedColor === 'green' ? 'active' : ''}`} onClick={() => setSelectedColor('green')}></button>
+            <button className={`tag-popup-color-btn yellow ${selectedColor === 'yellow' ? 'active' : ''}`} onClick={() => setSelectedColor('yellow')}></button>
+            <button className={`tag-popup-color-btn orange ${selectedColor === 'orange' ? 'active' : ''}`} onClick={() => setSelectedColor('orange')}></button>
+            <button className={`tag-popup-color-btn red ${selectedColor === 'red' ? 'active' : ''}`} onClick={() => setSelectedColor('red')}></button>
+            <button className={`tag-popup-color-btn pink ${selectedColor === 'pink' ? 'active' : ''}`} onClick={() => setSelectedColor('pink')}></button>
+            <button className={`tag-popup-color-btn bright-blue ${selectedColor === 'bright-blue' ? 'active' : ''}`} onClick={() => setSelectedColor('bright-blue')}></button>
+          </div>
+
+          <div className="tag-popup-btn-group">
+          <button>Отмена</button>
+          <button>Создать</button>
+          </div>
+        </div>  
+        : null}
       </div>
       <NoteTextarea
         value={note.content}

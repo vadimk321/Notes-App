@@ -444,6 +444,7 @@ button:hover svg {
 .new-note-tags-wrapper {
   padding: 10px 0px 10px 0px;
   display: flex;
+  position: relative;
 }
 
 .new-note-btn-add:hover{
@@ -459,6 +460,223 @@ button:hover svg {
 
 .new-note-tags-title span{
   margin-left: 10px;
+}
+
+.tag-add-btn {
+  color: #9157da;
+  padding: 7px 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
+  border: dashed 1px;
+  margin-left: 10px;
+  background-color: transparent;
+  transition: 0.3s;
+}
+
+.tag-add-btn:hover {
+  background-color: #1a2230;
+  transition: 0.3s;
+}
+
+.tag-popup {
+  position: absolute;
+  top: 55px;
+  left: 0;
+  z-index: 1000;
+  /* width: 320px; */
+  background-color: #171d28;
+  animation: popup 0.15s ease;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #272f3b;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.tag-popup-title-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tag-popup-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.tag-popup-input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tag-popup-subtite {
+  margin-top: 15px;
+  text-align: left;
+  font-size: 14px;
+  color: #9ba0ac;
+}
+
+.tag-popup-input-wrapper input {
+  background-color: #111620;
+  border: 1px solid #272f3b;
+  border-radius: 8px;
+  padding: 12px;
+  outline: none;
+  font-size: 16px;
+  transition: 0.2s;
+}
+
+.tag-popup-input-wrapper input:focus {
+  border-color: #4754e3;
+}
+
+.tag-popup-color-text {
+  margin-top: 15px;
+  text-align: left;
+  font-size: 14px;
+  color: #9ba0ac;
+}
+
+.tag-popup-colors-wrapper {
+  display: flex;
+  margin-top: 10px;
+  gap: 5px;
+}
+
+.tag-popup-btn-group {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.tag-popup-btn-group button {
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.tag-popup-btn-group button:last-child {
+  background-color: #4754e3;
+}
+
+.tag-popup-btn-group button:last-child:hover {
+  background-color: #3642c7;
+}
+
+@keyframes popup {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.tag-popup-color-btn {
+  padding: 15px;
+  border-radius: 15px;
+  border: none;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.tag-popup-color-btn.purple{
+  background-color: #7742cc;
+  transition: 0.2s;
+}
+
+/* Стили при выборе цвета */
+.tag-popup-color-btn.active {
+  outline: 2px solid #ffffff;
+  transform: scale(1.05);
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2);
+}
+
+.tag-popup-color-btn.purple:hover {
+  background-color: #8b5fe0;
+  transition: 0.2s;
+}
+
+.tag-popup-color-btn.blue {
+  background-color: #3c6cdd;
+  transition: 0.2s;
+}
+
+.tag-popup-color-btn.blue:hover {
+  background-color: #5a83ea;
+  transition: 0.2s;
+}
+
+.tag-popup-color-btn.green {
+  background-color: #58ac66;
+  transition: 0.2s;
+}
+
+.tag-popup-color-btn.green:hover {
+  background-color: #6cc77a;
+  transition: 0.2s;
+}
+
+.tag-popup-color-btn.yellow {
+  background-color: #e49d12;
+  transition: 0.2s;
+}
+
+.tag-popup-color-btn.yellow:hover {
+  background-color: #f2bd3a;
+  transition: 0.2s;
+}
+
+.tag-popup-color-btn.orange {
+  background-color: #dd6727;
+  transition: 0.2s;
+}
+
+.tag-popup-color-btn.orange:hover {
+  background-color: #ea7a3a;
+  transition: 0.2s;
+}
+
+.tag-popup-color-btn.red {
+  background-color: #d02d48;
+  transition: 0.2s;
+}
+
+.tag-popup-color-btn.red:hover {
+  background-color: #e04a63;
+  transition: 0.2s;
+}
+
+.tag-popup-color-btn.pink {
+  background-color: #ce346f;
+  transition: 0.2s;
+}
+
+.tag-popup-color-btn.pink:hover {
+  background-color: #dd4b82;
+  transition: 0.2s;
+}
+
+.tag-popup-color-btn.bright-blue {
+  background-color: #43a1a4;
+  transition: 0.2s;
+}
+
+.tag-popup-color-btn.bright-blue:hover {
+  background-color: #58b4b7;
+  transition: 0.2s;
 }
 
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
