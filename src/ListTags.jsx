@@ -11,7 +11,7 @@ function ListTags(props) {
       <button>
         <li className="list-tags-item">
         <div className="list-item-wrapper">
-          <span>{tag}</span>
+          <span>{tag.text}</span>
           <span></span>
         </div>
       </li>

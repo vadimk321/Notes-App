@@ -5,7 +5,7 @@ function TagItem(props) {
         } = props
   
   return (
-    <button>{tag}</button>
+    <button>{tag.text}</button>
   );
 }
 
