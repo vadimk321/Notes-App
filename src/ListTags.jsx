@@ -7,16 +7,15 @@ function ListTags(props) {
         } = props
 
   return (
-    <div className="list-tags-wrapper">
-      <button>
-        <li className="list-tags-item">
-        <div className="list-item-wrapper">
-          <span>{tag.text}</span>
-          <span></span>
-        </div>
+      <li className="list-tags-item">
+        {/* <div className="list-item-wrapper"> */}
+          <div>
+            <span className={`tag-dot big ${tag.color}`}></span>
+            <span>{tag.text}</span>
+          </div>
+          <span>0</span>
+        {/* </div> */}
       </li>
-      </button>
-    </div>
   )
 }
 

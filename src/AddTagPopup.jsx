@@ -7,7 +7,6 @@ function AddTagPopup(props) {
     setSelectedColor,
     setIsTagPopupOpen,
     buttonRef,
-    allTags,
     setAllTags
   } = props
 
@@ -25,6 +24,7 @@ function AddTagPopup(props) {
         !buttonRef.current.contains(event.target)
       ) {
         setIsTagPopupOpen(false);
+        setSelectedColor('grey');
       }
 
     }
@@ -47,7 +47,9 @@ function AddTagPopup(props) {
       color: selectedColor
     }
 
-    setAllTags(prev => ([...prev, result]))
+    setAllTags(prev => ([...prev, result]));
+    setIsTagPopupOpen(prev => !prev);
+    setSelectedColor('grey');
   }
 
 
@@ -82,6 +84,7 @@ function AddTagPopup(props) {
           <div className="tag-popup-btn-group">
           <button 
             onClick={() => {
+              setSelectedColor('grey');
               setIsTagPopupOpen(false);
               setAddTagInput('')}}>
             Отмена</button>

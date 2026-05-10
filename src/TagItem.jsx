@@ -4,8 +4,12 @@ function TagItem(props) {
           tag
         } = props
   
+
   return (
-    <button>{tag.text}</button>
+    <button className={`tag-item-add-btn ${tag.color}`}>
+      <span className={`tag-dot ${tag.color}`}></span>
+      {tag.text}
+      </button>
   );
 }
 

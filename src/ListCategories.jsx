@@ -6,18 +6,11 @@ function ListCategories(props) {
     notesCountAll,
     notesCountDeleted,
     notesCountFavorite,
-    setFilters,
     filters,
     setEditingId,
     exitEditor
   } = props
 
-
-  // function setCategory(category){
-  //   setFilters(prev => {
-  //     return {...prev, category: category}
-  //   })
-  // }
 
   return (
     <div className="list-сategories-wrapper">
@@ -25,7 +18,6 @@ function ListCategories(props) {
         <li 
           className={`list-сategories-item ${filters.category === 'all' ? 'active' : ''}`}
           onClick={() => {
-            // setCategory('all');
             setEditingId(null);
             exitEditor('all');
         }}>
@@ -40,7 +32,6 @@ function ListCategories(props) {
         <li 
           className={`list-сategories-item ${filters.category === 'favorites' ? 'active' : ''}`}
           onClick={() => {
-            // setCategory('favorites');
             setEditingId(null);
             exitEditor('favorites');
         }}>
@@ -55,7 +46,6 @@ function ListCategories(props) {
         <li 
           className={`list-сategories-item ${filters.category === 'deleted' ? 'active' : ''}`}
           onClick={() => {
-            // setCategory('deleted');
             setEditingId(null);
             exitEditor('deleted');
         }}>

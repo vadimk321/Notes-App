@@ -62,7 +62,7 @@ function Sidebar(props) {
         exitEditor={exitEditor}
         />
       <h4 className="list-tags-title">ТЕГИ</h4>
-      <ul>
+      <ul className="list-tags">
         {allTags ? allTags.map((tag) => <ListTags tag={tag}/>) : null}
       </ul>
 
