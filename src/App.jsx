@@ -57,12 +57,16 @@ function App() {
   );
   };
 
-  function exitEditor() {
+  function exitEditor(filter) {
     if (editingNote && !editingNote.title && !editingNote.content) {
       setNotes(prev => prev.filter(item => item.id !== editingNote.id));
     }
 
     setEditingId(null);
+    setFilters(prev => ({
+      ...prev,
+      category: filter
+    }));
   }
 
   return (

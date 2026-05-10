@@ -83,7 +83,7 @@ function NoteEditor(props) {
       <div className="new-note-status-wrapper">
         <button 
           className="new-note-btn-add"
-          onClick={exitEditor}
+          onClick={() => exitEditor('all')}
         >Готово</button>
       </div>
     </div>
