@@ -570,7 +570,7 @@ button:hover svg {
   height: 10px;
   background-color: #fff;
   display: inline-block;
-  margin-right: 10px;
+  margin-right: 5px;
 } 
 
 .tag-dot.grey {
@@ -611,6 +611,13 @@ button:hover svg {
 
 .tag-item-add-btn.grey {
   color: #5A6372;
+}
+
+.tag-item-add-btn.active {
+  background: #2b3445;
+  border: 1px solid #5b8cff;
+  color: white;
+  box-shadow:0 0 0 3px rgba(91, 140, 255, 0.12);
 }
 
 .tag-item-add-btn.purple {

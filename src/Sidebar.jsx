@@ -1,6 +1,6 @@
 // import { useState } from 'react'
 import ListCategories from './ListCategories.jsx'
-import ListTags from './ListTags.jsx'
+import TagSideBar from './TagSideBar.jsx'
 import logo from './assets/Logo.png'
 
 function Sidebar(props) {
@@ -12,6 +12,7 @@ function Sidebar(props) {
     notesCountDeleted,
     notesCountFavorite,
     setEditingId,
+    notes,
     setNotes,
     exitEditor,
     allTags
@@ -63,7 +64,12 @@ function Sidebar(props) {
         />
       <h4 className="list-tags-title">ТЕГИ</h4>
       <ul className="list-tags">
-        {allTags ? allTags.map((tag) => <ListTags tag={tag}/>) : null}
+        {allTags ? allTags.map((tag) => 
+          <TagSideBar 
+            tag={tag} 
+            key={tag.id}
+            counterTag={notes.filter(note => note.tags?.includes(tag.id)).length}
+            />) : null}
       </ul>
 
     </div>

@@ -1,22 +1,21 @@
 // import { useState } from 'react'
 
-function ListTags(props) {
+function TagSideBar(props) {
   
   const {
-          tag
+          tag,
+          counterTag
         } = props
 
   return (
       <li className="list-tags-item">
-        {/* <div className="list-item-wrapper"> */}
           <div>
             <span className={`tag-dot big ${tag.color}`}></span>
             <span>{tag.text}</span>
           </div>
-          <span>0</span>
-        {/* </div> */}
+          {counterTag > 0 ? <span>{counterTag}</span> : null}
       </li>
   )
 }
 
-export default ListTags
+export default TagSideBar

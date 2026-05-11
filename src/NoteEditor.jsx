@@ -13,7 +13,8 @@ function NoteEditor(props) {
           setNotes, 
           exitEditor,
           allTags,
-          setAllTags
+          setAllTags,
+          toggleTag
         } = props
 
   const [selectedColor, setSelectedColor] = useState('grey');
@@ -56,7 +57,14 @@ function NoteEditor(props) {
           <span>Теги</span>
         </div>
         <ul>
-          {allTags ? allTags.map((tag) => <TagItem tag={tag} key={tag.id}/>) : null}
+          {allTags ? allTags.map((tag) => 
+          <TagItem 
+            tag={tag} 
+            key={tag.id}
+            onClick={() => toggleTag(tag.id, note.id)}
+            isSelected={note.tags.includes(tag.id)}
+            // note={note}
+          />) : null}
           <button 
             className="tag-add-btn"
             onClick={() => setIsTagPopupOpen(prev => !prev)}

@@ -37,7 +37,7 @@ function App() {
   
   function deleteNote(id) {
     setNotes(prev => {
-      return prev.map(note => note.id === id ? {...note,isDeleted: true, isFavorite: false} : note)
+      return prev.map(note => note.id === id ? {...note, isDeleted: true, isFavorite: false} : note)
     })
   }
 
@@ -55,6 +55,37 @@ function App() {
         : note
     )
   );
+  };
+
+  function toggleTag(idTag, idNote) {
+    const resultNote = notes.find(note => note.id === idNote); 
+    const isHasTag = resultNote.tags.includes(idTag);
+
+    !isHasTag ?
+      setNotes(prev => 
+        prev.map(note => 
+          note.id === idNote ? { 
+            ...note, 
+            tags: [...note.tags, idTag]
+          }
+            : note
+        ) 
+      ) : 
+      setNotes(prev => 
+        prev.map(note => {
+          if (note.id === idNote) {
+            return { 
+              ...note, 
+              tags: note.tags.filter(tag => tag !== idTag)
+            }}
+
+          else {
+            return note
+          }
+        })
+      )
+
+    console.log(notes.filter(note => note.id === idNote));
   };
 
   function exitEditor(filter) {
@@ -78,6 +109,7 @@ function App() {
           notesCountFavorite={notes.filter((note) => note.isFavorite).length}
           filters={filters}
           setEditingId={setEditingId}
+          notes={notes}
           setNotes={setNotes}
           exitEditor={exitEditor}
           allTags={allTags}
@@ -89,6 +121,7 @@ function App() {
           exitEditor={exitEditor}
           setAllTags={setAllTags}
           allTags={allTags}
+          toggleTag={toggleTag}
         /> 
         : <NotesList 
           notes={notes} 
