@@ -65,10 +65,12 @@ function Sidebar(props) {
       <h4 className="list-tags-title">ТЕГИ</h4>
       <ul className="list-tags">
         {allTags ? allTags.map((tag) => 
-          <TagSideBar 
-            tag={tag} 
+          <TagSideBar
+            tag={tag}
             key={tag.id}
-            counterTag={notes.filter(note => note.tags?.includes(tag.id)).length}
+            filters={filters}
+            exitEditor={exitEditor}
+            counterTag={notes.filter(note => note.tags?.includes(tag.id) && !note.isDeleted).length}
             />) : null}
       </ul>
 

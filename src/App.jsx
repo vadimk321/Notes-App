@@ -13,7 +13,6 @@ function App() {
     category: 'all',
   });
 
-
   const [notes, setNotes] = useState(() => {
     const saved = localStorage.getItem('notes');
     return saved ? JSON.parse(saved) : [];
@@ -89,6 +88,7 @@ function App() {
   };
 
   function exitEditor(filter) {
+    // Проверка на пустую заполняемую заметку
     if (editingNote && !editingNote.title && !editingNote.content) {
       setNotes(prev => prev.filter(item => item.id !== editingNote.id));
     }
@@ -96,7 +96,7 @@ function App() {
     setEditingId(null);
     setFilters(prev => ({
       ...prev,
-      category: filter
+      category: filter,
     }));
   }
 
@@ -131,6 +131,7 @@ function App() {
           setFilters={setFilters}
           restoreNote={restoreNote}
           setEditingId={setEditingId}
+          allTags={allTags}
         />}
       </div>
   )

@@ -10,13 +10,15 @@ function NotesList(props) {
     toggleFavorite,
     setFilters,
     restoreNote,
-    setEditingId
+    setEditingId,
+    allTags
   } = props
 
   // Название текущего раздела.
   const categorySubtitle = useMemo(() => {
     
     let category = '';
+    let isHasTag = (allTags.find(tag => tag.id === filters.category));
 
     if (filters.category === 'all') {
       category = 'Все заметки';
@@ -30,6 +32,13 @@ function NotesList(props) {
       category = 'Корзина';
     }
 
+     if (isHasTag !== undefined) {
+      category = isHasTag.text;
+     }
+    // if (filters.tag !== '') {
+    //   category = allTags.find(tag => tag.id === filters.tag).text;
+    // }
+
     return category
   }, [filters])
 
@@ -37,6 +46,7 @@ function NotesList(props) {
   const filteredNotes = useMemo(() => {
     
     let result = [...notes];
+    let isHasTag = (allTags.find(tag => tag.id === filters.category));
 
     if (filters.category === 'all') {
       result = result.filter(note => !note.isDeleted);
@@ -48,6 +58,10 @@ function NotesList(props) {
 
     if (filters.category === 'deleted') {
       result = result.filter(note => note.isDeleted);
+    }
+
+    if (isHasTag !== undefined) {
+      result = (result.filter(note => note.tags.includes(filters.category)).filter(note => !note.isDeleted));
     }
 
     return result
