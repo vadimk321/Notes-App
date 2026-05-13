@@ -65,11 +65,12 @@ function AddTagPopup(props) {
             <input 
               type="text" 
               value={addTagInput}
-              onChange={(e) => setAddTagInput(e.target.value)}/>
+              onChange={(e) => setAddTagInput(e.target.value)}
+              className={`${addTagInput.length >= 10 ? 'add-tag-input-blocked' : null}`}
+              />
+              
           </div>
-
           <p className="tag-popup-color-text">Цвет</p>
-
           <div className="tag-popup-colors-wrapper">
             <button className={`tag-popup-color-btn purple ${selectedColor === 'purple' ? 'active' : ''}`} onClick={() => setSelectedColor('purple')}></button>
             <button className={`tag-popup-color-btn blue ${selectedColor === 'blue' ? 'active' : ''}`} onClick={() => setSelectedColor('blue')}></button>
@@ -88,7 +89,7 @@ function AddTagPopup(props) {
               setIsTagPopupOpen(false);
               setAddTagInput('')}}>
             Отмена</button>
-          <button onClick={() => handleAddTag()}>Создать</button>
+          <button onClick={() => handleAddTag()} disabled={addTagInput.length >= 10}>Создать</button>
           </div>
         </div>  
   );

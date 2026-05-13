@@ -92,6 +92,7 @@ function NotesList(props) {
             setFilters={setFilters}
             restoreNote={restoreNote}
             setEditingId={setEditingId}
+            allTags={allTags}
             />))
              : 
              <h2 className="category-empty-title">{`Пока в разделе «${categorySubtitle}» нет заметок`}</h2>}

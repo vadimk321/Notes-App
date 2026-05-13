@@ -1,7 +1,8 @@
 // import { useState } from 'react'
-import StarIcon from './StarIcon.jsx'
-import DeleteIcon from './DeleteIcon.jsx'
+import StarIcon from './StarIcon.jsx';
+import DeleteIcon from './DeleteIcon.jsx';
 import RestoreIcon from './RestoreIcon.jsx';
+import TagNoteItem from './TagNoteItem.jsx';
 
 function NoteItem(props) {
   
@@ -11,10 +12,13 @@ function NoteItem(props) {
     toggleFavorite,
     setFilters,
     restoreNote,
-    setEditingId
+    setEditingId,
+    allTags
   } = props
 
   const date = note.createdAt.split('T')[0].split('-');
+  const countMoreTags = note.tags.slice(2).length;
+  const dateString = `${date[2]}.${date[1]}.${date[0].split('')[2]}${date[0].split('')[3]}`
 
   function handlerDeleteNote(e, id) {
     e.stopPropagation();
@@ -34,7 +38,8 @@ function NoteItem(props) {
     }))
   }
 
-  function handlerToggleFavorite() {
+  function handlerToggleFavorite(e) {
+    e.stopPropagation();
     toggleFavorite(note.id);
   }
 
@@ -43,7 +48,6 @@ function NoteItem(props) {
       <li className="note-item-wrapper">
         <div>
           <h5 className="note-title">{note.title}</h5>
-          
             {!note.isDeleted 
             ? <button 
                 onClick={(e) => {handlerDeleteNote(e, note.id)}}
@@ -60,14 +64,20 @@ function NoteItem(props) {
          
         </div>
         <p className="note-text">{note.content}</p>
-        <span className="note-date">{`${date[2]}.${date[1]}.${date[0].split('')[2]}${date[0].split('')[3]}`}</span>
-         
+        <div className="note-tags-wrapper">
+          {note.tags.slice(0, 2).map(tag => {
+            return <TagNoteItem
+            key={note.id + tag}
+            tag={allTags.find(item => item.id === tag)}
+          />
+          }
+          )}
+          {countMoreTags > 0 ? <span className="note-count-more-tags">{`+${countMoreTags}`}</span> : null}
+        </div>
+        <span className="note-date">{dateString}</span>
           {!note.isDeleted 
           ? <button
-              onClick={(e) => {
-              e.stopPropagation();
-              handlerToggleFavorite();
-            }}
+            onClick={(e) => {handlerToggleFavorite(e);}}
             className="note-item-star-btn"
           >
             <StarIcon  filled={note.isFavorite}/>

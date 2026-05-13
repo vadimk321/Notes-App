@@ -317,7 +317,7 @@ ul li span {
   font-size: 14px;
   position: absolute;
   bottom: 5px;
-  right: 15px;
+  right: 10px;
 }
 
 .note-item-star-btn {
@@ -328,6 +328,64 @@ ul li span {
   border: none;
   cursor: pointer;
   padding: 4px,
+}
+
+.note-tags-wrapper {
+  font-size: 14px;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+
+.note-count-more-tags {
+  padding: 5px 0px;
+  font-size: 18px;
+  /* border-radius: 5px;
+  border: solid 1px; */
+}
+
+/* TagNoteItem */
+
+.note-tag-item {
+  padding: 5px 5px;
+  font-size: 13px;
+  border-radius: 5px;
+  border: solid 1px;
+  background-color: transparent;
+  transition: 0.3s;
+  margin-right: 5px;
+}
+
+.note-tag-item.purple {
+  color: #7742cc;
+}
+
+.note-tag-item.blue {
+  color: #3c6cdd;
+}
+
+.note-tag-item.green {
+  color: #58ac66;
+}
+
+.note-tag-item.yellow {
+  color: #e49d12;
+}
+
+.note-tag-item.orange {
+  color: #dd6727;
+}
+
+.note-tag-item.red {
+  color: #d02d48;
+}
+
+.note-tag-item.pink {
+  color: #ce346f;
+}
+
+.note-tag-item.bright-blue {
+  color: #43a1a4;
 }
 
 /* StarIcon */
@@ -381,8 +439,8 @@ button:hover svg {
   border: none;
   cursor: pointer;
   padding: 4px;
-  top: 10px;
-  right: 10px;
+  top: 7px;
+  right: 7px;
 }
 
 .delete-icon {
@@ -698,6 +756,13 @@ button:hover svg {
   outline: none;
   font-size: 16px;
   transition: 0.2s;
+}
+
+
+.add-tag-input-blocked {
+  color: #d02d48;
+  border: 2px solid #ef4444;
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.4);
 }
 
 .tag-popup-input-wrapper input:focus {
