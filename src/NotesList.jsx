@@ -6,20 +6,22 @@ function NotesList(props) {
   const {
     notes,
     filters,
+    allTags,
     deleteNote,
     toggleFavorite,
     setFilters,
     restoreNote,
     setEditingId,
-    allTags
+    deleteTag
   } = props
+
+  let isHasTag = (allTags.find(tag => tag.id === filters.category));
 
   // Название текущего раздела.
   const categorySubtitle = useMemo(() => {
     
     let category = '';
-    let isHasTag = (allTags.find(tag => tag.id === filters.category));
-
+    
     if (filters.category === 'all') {
       category = 'Все заметки';
     }
@@ -35,9 +37,6 @@ function NotesList(props) {
      if (isHasTag !== undefined) {
       category = isHasTag.text;
      }
-    // if (filters.tag !== '') {
-    //   category = allTags.find(tag => tag.id === filters.tag).text;
-    // }
 
     return category
   }, [filters])
@@ -46,7 +45,6 @@ function NotesList(props) {
   const filteredNotes = useMemo(() => {
     
     let result = [...notes];
-    let isHasTag = (allTags.find(tag => tag.id === filters.category));
 
     if (filters.category === 'all') {
       result = result.filter(note => !note.isDeleted);
@@ -71,7 +69,38 @@ function NotesList(props) {
     <div className="notes-list-wrapper"> 
       <div className="notes-list-title">
         <div>
-          <h2>{categorySubtitle}</h2>
+          <div className="subtitle-delete-tag-wrapper">
+            <h2>{categorySubtitle}</h2>
+            {isHasTag !== undefined ? 
+            <button className="delete-tag-btn" onClick={() => deleteTag(isHasTag.id)}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+              >
+                <path
+                  d="M20 10.5L12.5 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V12.5"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M10 10L14 14"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+                <path
+                  d="M14 10L10 14"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+            </svg>
+          </button> : null}
+          </div>
           <h5 className="notes-subtitle-counter">
             Заметок: {filteredNotes.length} 
           </h5>

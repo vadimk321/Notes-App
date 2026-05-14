@@ -87,6 +87,18 @@ function App() {
     console.log(notes.filter(note => note.id === idNote));
   };
 
+  function deleteTag(tagId) {
+    setNotes(prev => prev.map(note => ({
+      ...note,
+      tags: note.tags.filter(tag => tag !== tagId)
+    })));
+    setAllTags(prev => prev.filter(tag => tag.id !== tagId));
+    setFilters(prev => ({
+      ...prev,
+      category: 'all'
+    }))
+  }
+
   function exitEditor(filter) {
     // Проверка на пустую заполняемую заметку
     if (editingNote && !editingNote.title && !editingNote.content) {
@@ -132,6 +144,7 @@ function App() {
           restoreNote={restoreNote}
           setEditingId={setEditingId}
           allTags={allTags}
+          deleteTag={deleteTag}
         />}
       </div>
   )

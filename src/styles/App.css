@@ -240,12 +240,23 @@ ul li span {
 }
 
 
+.subtitle-delete-tag-wrapper {
+  display: flex;
+}
+
+.delete-tag-btn {
+  all: unset;
+  cursor: pointer;
+  margin-left: 10px;
+  color: #ff4d4f;
+  transition: 0.3s;
+}
 
 
-
-
-
-
+.delete-tag-btn:hover {
+  color: #ff7875;
+  transition: 0.3s;
+}
 
 
 
