@@ -17,8 +17,15 @@ function NoteItem(props) {
   } = props
 
   const date = note.createdAt.split('T')[0].split('-');
+  const dateString = `${date[2]}.${date[1]}.${date[0].split('')[2]}${date[0].split('')[3]}`;
+  // const testDate = Math.round((new Date() - new Date(note.createdAt)) / 1000);
+
+
+  
   const countMoreTags = note.tags.slice(2).length;
-  const dateString = `${date[2]}.${date[1]}.${date[0].split('')[2]}${date[0].split('')[3]}`
+  
+
+
 
   function handlerDeleteNote(e, id) {
     e.stopPropagation();
@@ -41,6 +48,7 @@ function NoteItem(props) {
   function handlerToggleFavorite(e) {
     e.stopPropagation();
     toggleFavorite(note.id);
+    console.log(testDate)
   }
 
   return (

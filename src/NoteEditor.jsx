@@ -81,6 +81,8 @@ function NoteEditor(props) {
             buttonRef={buttonRef}
             allTags={allTags}
             setAllTags={setAllTags}
+            note={note}
+            setNotes={setNotes}
           />
           : null}
       </div>

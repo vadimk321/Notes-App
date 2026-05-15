@@ -7,7 +7,10 @@ function AddTagPopup(props) {
     setSelectedColor,
     setIsTagPopupOpen,
     buttonRef,
-    setAllTags
+    setAllTags,
+    allTags,
+    note,
+    setNotes
   } = props
 
   const popupRef = useRef(null);
@@ -41,15 +44,30 @@ function AddTagPopup(props) {
   }, []);
 
   function handleAddTag() {
-    const result = {
-      id: crypto.randomUUID(),
-      text: addTagInput,
-      color: selectedColor
+
+    let isHasDouble = allTags.find(tag => tag.text === addTagInput);
+    console.log(isHasDouble)
+    if (isHasDouble === undefined) {
+      const result = {
+        id: crypto.randomUUID(),
+        text: addTagInput,
+        color: selectedColor
+      }
+
+      setAllTags(prev => ([...prev, result]));
+      setIsTagPopupOpen(prev => !prev);
+      setSelectedColor('grey');
     }
 
-    setAllTags(prev => ([...prev, result]));
-    setIsTagPopupOpen(prev => !prev);
-    setSelectedColor('grey');
+    else if (isHasDouble !== undefined) {
+      setNotes(prev => prev.map(item => item.id === note.id 
+        ? ({
+          ...note, 
+          tags: [...note.tags, isHasDouble.id]}) 
+          : item))
+      setIsTagPopupOpen(prev => !prev);
+      setSelectedColor('grey');
+    }
   }
 
 
