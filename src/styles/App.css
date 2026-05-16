@@ -415,8 +415,9 @@ button:hover svg {
   fill: transparent;
   stroke: #facc15;
   transition:
-    transform 0.2s ease,
-    fill 0.2s ease;
+  transform 0.2s ease,
+  fill 0.2s ease;
+  cursor: pointer
 }
 
 
@@ -435,7 +436,12 @@ button:hover svg {
 }
 
 
-
+.star.size-50px{
+  width: 35px;
+  height: 35px;
+  margin-right: 10px;
+  margin-top: 5px;
+}
 
 
 
@@ -557,6 +563,9 @@ button:hover svg {
 .new-note-status-wrapper{
   text-align: right;
   margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .new-note-btn-add {
@@ -716,6 +725,16 @@ button:hover svg {
 
 .tag-item-add-btn.bright-blue {
   color: #43a1a4;
+}
+
+.note-editor-star-btn {
+  /* position: absolute;
+  right: 10px;
+  bottom: 32px; */
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px,
 }
 
 /* POPUP add tag */

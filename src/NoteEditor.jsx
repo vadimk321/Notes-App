@@ -3,6 +3,7 @@ import NoteTextarea from './NoteTextarea.jsx'
 import NoteInputTitle from './NoteInputTitle.jsx'
 import TagItem from './TagItem.jsx'
 import AddTagPopup from './AddTagPopup.jsx'
+import StarIcon from './StarIcon.jsx'
 
 function NoteEditor(props) {
 
@@ -14,7 +15,8 @@ function NoteEditor(props) {
           exitEditor,
           allTags,
           setAllTags,
-          toggleTag
+          toggleTag,
+          toggleFavorite
         } = props
 
   const [selectedColor, setSelectedColor] = useState('grey');
@@ -38,6 +40,10 @@ function NoteEditor(props) {
         : item
       )
     )
+  }
+
+  function handlerToggleFavorite(id) {
+    toggleFavorite(id)
   }
 
 
@@ -90,7 +96,15 @@ function NoteEditor(props) {
         value={note.content}
         onChange={(val) => handleChange("content", val)}
       />
-      <div className="new-note-status-wrapper">
+      
+      <div className="new-note-status-wrapper"> 
+        <button
+          onClick={() => {handlerToggleFavorite(note.id);}}
+          className="note-editor-star-btn">
+          <StarIcon  
+            filled={note.isFavorite}
+            size={"50px"}/>
+        </button>
         <button 
           className="new-note-btn-add"
           onClick={() => exitEditor('all')}

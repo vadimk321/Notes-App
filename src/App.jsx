@@ -134,6 +134,7 @@ function App() {
           setAllTags={setAllTags}
           allTags={allTags}
           toggleTag={toggleTag}
+          toggleFavorite={toggleFavorite}
         /> 
         : <NotesList 
           notes={notes} 

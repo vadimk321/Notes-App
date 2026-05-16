@@ -45,12 +45,14 @@ function AddTagPopup(props) {
 
   function handleAddTag() {
 
-    let isHasDouble = allTags.find(tag => tag.text === addTagInput);
+    let isHasDouble = allTags.find(tag => tag.text.toUpperCase().trim() === addTagInput.toUpperCase().trim());
+
     console.log(isHasDouble)
+
     if (isHasDouble === undefined) {
       const result = {
         id: crypto.randomUUID(),
-        text: addTagInput,
+        text: addTagInput.trim(),
         color: selectedColor
       }
 
