@@ -3,6 +3,7 @@ import StarIcon from './StarIcon.jsx';
 import DeleteIcon from './DeleteIcon.jsx';
 import RestoreIcon from './RestoreIcon.jsx';
 import TagNoteItem from './TagNoteItem.jsx';
+import DateItem from './DateItem.jsx'
 
 function NoteItem(props) {
   
@@ -15,18 +16,11 @@ function NoteItem(props) {
     setEditingId,
     allTags
   } = props
-
-  const date = note.createdAt.split('T')[0].split('-');
-  const dateString = `${date[2]}.${date[1]}.${date[0].split('')[2]}${date[0].split('')[3]}`;
-  // const testDate = Math.round((new Date() - new Date(note.createdAt)) / 1000);
-
-
   
+  
+  // Счётчик тегов, которые не влезли в карточку
   const countMoreTags = note.tags.slice(2).length;
   
-
-
-
   function handlerDeleteNote(e, id) {
     e.stopPropagation();
     deleteNote(id);
@@ -82,7 +76,9 @@ function NoteItem(props) {
           )}
           {countMoreTags > 0 ? <span className="note-count-more-tags">{`+${countMoreTags}`}</span> : null}
         </div>
-        <span className="note-date">{dateString}</span>
+        
+        <DateItem 
+          noteCreatedAt={note.createdAt}/>
           {!note.isDeleted 
           ? <button
             onClick={(e) => {handlerToggleFavorite(e);}}

@@ -83,8 +83,6 @@ function App() {
           }
         })
       )
-
-    console.log(notes.filter(note => note.id === idNote));
   };
 
   function deleteTag(tagId) {
