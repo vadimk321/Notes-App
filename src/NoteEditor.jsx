@@ -1,13 +1,20 @@
-import { useState, useRef } from 'react'
-import NoteTextarea from './NoteTextarea.jsx'
+import { useState, useRef, useEffect } from 'react'
+import { useEditor, EditorContent } from '@tiptap/react'
+import Placeholder from '@tiptap/extension-placeholder'
+import StarterKit from '@tiptap/starter-kit'
+import TaskList from '@tiptap/extension-task-list'
+import TaskItem from '@tiptap/extension-task-item'
+import EditorToolbar from './EditorToolbar.jsx'
+
 import NoteInputTitle from './NoteInputTitle.jsx'
 import TagItem from './TagItem.jsx'
 import AddTagPopup from './AddTagPopup.jsx'
 import StarIcon from './StarIcon.jsx'
 
+
 function NoteEditor(props) {
 
-
+  
 
   const {
           note,
@@ -22,6 +29,44 @@ function NoteEditor(props) {
   const [selectedColor, setSelectedColor] = useState('grey');
   const [isTagPopupOpen, setIsTagPopupOpen] = useState(false);
  
+  const editor = useEditor({
+    extensions: [
+      StarterKit,
+
+      Placeholder.configure({
+        placeholder: "Начни писать свою заметку...",
+      }),
+
+      TaskList,
+
+      TaskItem.configure({
+        nested: true,
+      }),
+    ],
+
+    content: note.content || '',
+
+    onUpdate: ({ editor }) => {
+
+      handleChange(
+        'content',
+        editor.getHTML()
+      );
+    },
+});
+
+  useEffect(() => {
+
+  if (
+    editor &&
+    note.content !== editor.getHTML()
+  ) {
+    editor.commands.setContent(
+      note.content || ''
+    );
+  }
+
+}, [note.id, editor]);
 
   // Для фикса закрытия PopUp при клике вне окна на кнопку "добавить тег"
   const buttonRef = useRef(null);
@@ -69,7 +114,6 @@ function NoteEditor(props) {
             key={tag.id}
             onClick={() => toggleTag(tag.id, note.id)}
             isSelected={note.tags.includes(tag.id)}
-            // note={note}
           />) : null}
           <button 
             className="tag-add-btn"
@@ -92,10 +136,10 @@ function NoteEditor(props) {
           />
           : null}
       </div>
-      <NoteTextarea
-        value={note.content}
-        onChange={(val) => handleChange("content", val)}
-      />
+      <EditorToolbar editor={editor}/>
+      <div className="editor-wrapper">
+        <EditorContent editor={editor} />
+      </div>
       
       <div className="new-note-status-wrapper"> 
         <button

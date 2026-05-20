@@ -272,7 +272,7 @@ ul li span {
 .note-item-wrapper {
   display: flex;
   flex-direction: column;
-  padding: 5px 25px 20px 20px;
+  padding: 5px 25px 40px 20px;
     width: 285px;
     height: 260px;
     cursor: pointer;
@@ -547,6 +547,15 @@ button:hover svg {
   border-radius: 10px;
   padding: 20px 15px;
   outline: 0;
+  transition: 0.2s;
+  border: 1px solid #1d2635;
+}
+
+.new-note-input:focus-within {
+  transition: 0.2s;
+  border-color: #4754e3;
+
+  box-shadow: 0 0 0 3px rgba(71, 84, 227, 0.15);
 }
 
 .new-note-main-section {
@@ -728,14 +737,19 @@ button:hover svg {
 }
 
 .note-editor-star-btn {
-  /* position: absolute;
-  right: 10px;
-  bottom: 32px; */
   background: transparent;
   border: none;
   cursor: pointer;
   padding: 4px,
 }
+
+
+
+
+
+
+
+
 
 /* POPUP add tag */
 .tag-popup {
@@ -945,10 +959,172 @@ button:hover svg {
 }
 
 
+/* EditorContent */
 
+.editor-wrapper {
+  padding: 18px 20px;
+  border-radius: 14px;
+  background: #111620;
+  border: 1px solid #1d2635;
+  transition: 0.2s;
+}
 
+.editor-wrapper:focus-within {
+  border-color: #4754e3;
 
+  box-shadow: 0 0 0 3px rgba(71, 84, 227, 0.15);
+}
 
+.ProseMirror {
+  min-height: 150px;
+  outline: none;
+  color: #f3f5f7;
+  font-size: 17px;
+  line-height: 1.8;
+  font-family: "Inter", sans-serif;
+  word-break: break-word;
+  text-align: left;
+}
+
+.ProseMirror h1 {
+  font-size: 34px;
+  font-weight: 700;
+  margin: 24px 0 14px;
+}
+
+.ProseMirror h2 {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 20px 0 12px;
+}
+
+.ProseMirror h3 {
+  font-size: 22px;
+  font-weight: 600;
+  margin: 18px 0 10px;
+}
+
+.ProseMirror p {
+  margin: 10px 0;
+}
+
+.ProseMirror ul,
+.ProseMirror ol {
+  padding-left: 24px;
+  margin: 14px 0;
+}
+
+.ProseMirror ul {
+  list-style-type: disc;
+}
+
+.ProseMirror ol {
+  list-style-type: decimal;
+}
+
+.ProseMirror li {
+  margin: 6px 0;
+}
+
+.ProseMirror blockquote {
+  border-left: 3px solid #4754e3;
+  padding-left: 14px;
+  margin: 18px 0;
+  color: #9aa4b2;
+}
+
+.ProseMirror pre {
+  background: #0d1117;
+  color: #d6deeb;
+  padding: 16px;
+  border-radius: 10px;
+  overflow-x: auto;
+  margin: 18px 0;
+}
+
+.ProseMirror code {
+  background: #1b2230;
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.ProseMirror p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  color: #6b7280;
+  pointer-events: none;
+  height: 0;
+}
+
+.ProseMirror ul[data-type="taskList"] {
+  list-style: none;
+  padding-left: 0;
+}
+
+.ProseMirror ul[data-type="taskList"] li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.ProseMirror ul[data-type="taskList"] li>label {
+  margin-top: 3px;
+}
+
+.ProseMirror ul[data-type="taskList"] li>div {
+  flex: 1;
+}
+
+/* toolbar ---------------------*/
+
+.editor-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+  margin-bottom: 12px;
+  padding: 10px;
+  background: #161c27;
+  border: 1px solid #252f42;
+  border-radius: 14px;
+}
+.editor-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.editor-toolbar button {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  border-radius: 10px;
+  color: #d7dce2;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.editor-toolbar button:hover {
+  background: #252f42;
+}
+
+.editor-toolbar button.is-active {
+  background: #4754e3;
+
+  color: white;
+}
+
+.toolbar-divider {
+  width: 1px;
+  height: 24px;
+  background: #2b3445;
+}
 
 /* ListTags ---------------------*/
 

@@ -65,7 +65,11 @@ function NoteItem(props) {
               </button>  }
          
         </div>
-        <p className="note-text">{note.content}</p>
+        <div className="note-text"
+          dangerouslySetInnerHTML={{
+            __html: note.content
+          }}
+        />
         <div className="note-tags-wrapper">
           {note.tags.slice(0, 2).map(tag => {
             return <TagNoteItem
