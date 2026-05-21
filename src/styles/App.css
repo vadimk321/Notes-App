@@ -272,7 +272,7 @@ ul li span {
 .note-item-wrapper {
   display: flex;
   flex-direction: column;
-  padding: 5px 25px 40px 20px;
+  padding: 5px 25px 45px 20px;
     width: 285px;
     height: 260px;
     cursor: pointer;
@@ -1075,6 +1075,10 @@ button:hover svg {
 
 .ProseMirror ul[data-type="taskList"] li>div {
   flex: 1;
+}
+
+ul li[data-type="taskItem"] {
+  display: flex;
 }
 
 /* toolbar ---------------------*/
