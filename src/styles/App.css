@@ -269,6 +269,15 @@ ul li span {
   all: unset;
 }
 
+.note-item-wrapper.deleted {
+  opacity: 0.8;
+  cursor: default;
+}
+
+.note-item-wrapper li {
+  pointer-events: none;
+}
+
 .note-item-wrapper {
   display: flex;
   flex-direction: column;
@@ -309,6 +318,19 @@ ul li span {
   overflow: hidden;
   word-break: break-word;
   overflow-wrap: break-word;
+}
+
+.note-text pre,
+.note-text code {
+  white-space: pre-wrap;
+}
+.note-text code {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  /* или сколько строк */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-word;
 }
 
 .note-title {

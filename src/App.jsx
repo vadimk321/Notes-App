@@ -15,7 +15,8 @@ function App() {
 
   const [notes, setNotes] = useState(() => {
     const saved = localStorage.getItem('notes');
-    return saved ? JSON.parse(saved) : [];
+    const result = JSON.parse(saved).filter(note => note.content !== '' && note.title !== '');
+    return saved ? result : [];
   })
 
   const [allTags, setAllTags] = useState(() => {

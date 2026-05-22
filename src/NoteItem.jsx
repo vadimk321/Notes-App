@@ -32,6 +32,9 @@ function NoteItem(props) {
   }
 
   function editNote(){
+    if (note.isDeleted) {
+      return;
+    }
     setEditingId(note.id)
     setFilters(prev => ({
       ...prev,
@@ -46,8 +49,10 @@ function NoteItem(props) {
   }
 
   return (
-    <div className="note-item-wrapper-btn" onClick={editNote}>
-      <li className="note-item-wrapper">
+    <div 
+      className={`note-item-wrapper-btn`} 
+      onClick={editNote}>
+      <li className={`note-item-wrapper ${note.isDeleted ? 'deleted' : ''}`}>
         <div>
           <h5 className="note-title">{note.title}</h5>
             {!note.isDeleted 
