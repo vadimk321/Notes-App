@@ -1,4 +1,4 @@
-// import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import ListCategories from './ListCategories.jsx'
 import TagSideBar from './TagSideBar.jsx'
 import logo from './assets/Logo.png'
@@ -18,10 +18,24 @@ function Sidebar(props) {
     allTags
   } = props
 
+  const [searchValue, setSearchValue] = useState('')
+
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setFilters(prev => ({
+        ...prev,
+        search: searchValue
+      }));
+    }, 300)
+
+    return () => clearTimeout(timeout);
+  }, [searchValue]);
+
   function handleChange(value) {
     setFilters(prev => ({
       ...prev,
-      search: value
+      search: searchValue
     }))
   }
 
@@ -36,8 +50,8 @@ function Sidebar(props) {
         <input type="text" 
           placeholder="Поиск заметок..." 
           className="sidebar-input-search" 
-          onChange={(e) => handleChange(e.target.value)}
-          value={filters.search}/>
+          onChange={(e) => setSearchValue(e.target.value)}
+          value={searchValue}/>
       </div>
       <button 
         className="sidebar-button" 
