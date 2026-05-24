@@ -11,12 +11,18 @@ function App() {
   const [editingId, setEditingId] = useState(null);
   const [filters, setFilters] = useState({
     category: 'all',
+    search: '',
+    // sortBy: 'updated'
   });
 
   const [notes, setNotes] = useState(() => {
     const saved = localStorage.getItem('notes');
-    const result = JSON.parse(saved).filter(note => note.content !== '' && note.title !== '');
-    return saved ? result : [];
+
+    if (!saved) return [];
+
+    return JSON.parse(saved).filter(
+      note => note.content !== '' && note.title !== ''
+    );
   })
 
   const [allTags, setAllTags] = useState(() => {
@@ -114,16 +120,17 @@ function App() {
   return (
       <div className="main-wrapper">
         <Sidebar
+          filters={filters}
           setFilters={setFilters}
+          notes={notes}
+          setNotes={setNotes}
+          allTags={allTags}
+          setEditingId={setEditingId}
+          exitEditor={exitEditor}
+
           notesCountAll={notes.filter((note) => !note.isDeleted).length}
           notesCountDeleted={notes.filter((note) => note.isDeleted).length}
           notesCountFavorite={notes.filter((note) => note.isFavorite).length}
-          filters={filters}
-          setEditingId={setEditingId}
-          notes={notes}
-          setNotes={setNotes}
-          exitEditor={exitEditor}
-          allTags={allTags}
         />
         {editingId 
         ? <NoteEditor 

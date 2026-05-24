@@ -18,6 +18,14 @@ function Sidebar(props) {
     allTags
   } = props
 
+  function handleChange(value) {
+    setFilters(prev => ({
+      ...prev,
+      search: value
+    }))
+  }
+
+
   return (
     <div className="sidebar-wrapper">
       <div className="logo-wrapper">
@@ -25,7 +33,11 @@ function Sidebar(props) {
         <h2 className="logo-title">NotesApp</h2>
       </div>
       <div className="input-wrapper">
-        <input type="text" placeholder="Поиск заметок..." className="sidebar-input-search" />
+        <input type="text" 
+          placeholder="Поиск заметок..." 
+          className="sidebar-input-search" 
+          onChange={(e) => handleChange(e.target.value)}
+          value={filters.search}/>
       </div>
       <button 
         className="sidebar-button" 
@@ -49,10 +61,10 @@ function Sidebar(props) {
           }))
           setNotes(prev => [...prev, newNote]);
           setEditingId(newNote.id);
-}}>
+        }}>
         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAaUlEQVR4AexSWwoAIAir7n/n+nEwyFgggYH+KDnaA0d7XEUgA84V0bSSsgmQywEJux7LgYzKjciOZWv4bVvYA/bcXQIGRGeXoB8KZId1x567S8CA6FwEMsFcEeF6pGwC5HJAwq7H/x0sAAAA//9XuclYAAAABklEQVQDABpEODG4FEVIAAAAAElFTkSuQmCC"/>
         <span className="sidebar-button-text">Новая заметка</span>
-        </button>
+      </button>
       <ListCategories
         notesCountAll={notesCountAll}
         notesCountDeleted={notesCountDeleted}

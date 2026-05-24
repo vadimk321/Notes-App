@@ -46,6 +46,15 @@ function NotesList(props) {
     
     let result = [...notes];
 
+    if (filters.search.trim()) {
+      const query = filters.search.toLowerCase();
+
+      result = result.filter(note => 
+        note.title.toLowerCase().includes(query) ||
+        note.content.toLowerCase().includes(query)
+      );
+    }
+
     if (filters.category === 'all') {
       result = result.filter(note => !note.isDeleted);
     }
