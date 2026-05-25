@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { stripHtml } from './utils/stripHtml.js';
 
 import Sidebar from './Sidebar.jsx';
 import NotesList from './NotesList.jsx'
@@ -20,9 +21,12 @@ function App() {
 
     if (!saved) return [];
 
-    return JSON.parse(saved).filter(
-      note => note.content !== '' && note.title !== ''
-    );
+    return JSON.parse(saved).filter(note => {
+      
+      const plainText = stripHtml(note.content).trim();
+
+    return plainText !== '' || note.title.trim() !== ''
+    });
   })
 
   const [allTags, setAllTags] = useState(() => {
@@ -105,8 +109,13 @@ function App() {
   }
 
   function exitEditor(filter) {
+
+    const plainText = stripHtml(editingNote.content).trim();
+
+
+
     // Проверка на пустую заполняемую заметку
-    if (editingNote && !editingNote.title && !editingNote.content) {
+    if (editingNote && !editingNote.title && plainText) {
       setNotes(prev => prev.filter(item => item.id !== editingNote.id));
     }
 
