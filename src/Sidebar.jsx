@@ -31,14 +31,7 @@ function Sidebar(props) {
 
     return () => clearTimeout(timeout);
   }, [searchValue]);
-
-  function handleChange(value) {
-    setFilters(prev => ({
-      ...prev,
-      search: searchValue
-    }))
-  }
-
+  
 
   return (
     <div className="sidebar-wrapper">

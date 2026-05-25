@@ -1,4 +1,5 @@
- import { useEffect, useMemo } from 'react'
+ import { useMemo } from 'react'
+ import { stripHtml } from './utils/stripHtml.js';
 import NoteItem from './NoteItem.jsx'
 
 function NotesList(props) {
@@ -48,10 +49,12 @@ function NotesList(props) {
 
     if (filters.search.trim()) {
       const query = filters.search.toLowerCase();
-
-      result = result.filter(note => 
-        note.title.toLowerCase().includes(query) ||
-        note.content.toLowerCase().includes(query)
+    
+      result = result.filter(note => {
+        const plainText = stripHtml(note.content).toLowerCase()
+        return note.title.toLowerCase().includes(query) || plainText.includes(query)
+      }
+        
       );
     }
 
