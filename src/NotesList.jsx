@@ -47,17 +47,8 @@ function NotesList(props) {
     
     let result = [...notes];
 
-    if (filters.search.trim()) {
-      const query = filters.search.toLowerCase();
     
-      result = result.filter(note => {
-        const plainText = stripHtml(note.content).toLowerCase()
-        return note.title.toLowerCase().includes(query) || plainText.includes(query)
-      }
-        
-      );
-    }
-
+    // Категория || Теги
     if (filters.category === 'all') {
       result = result.filter(note => !note.isDeleted);
     }
@@ -72,6 +63,31 @@ function NotesList(props) {
 
     if (isHasTag !== undefined) {
       result = (result.filter(note => note.tags.includes(filters.category)).filter(note => !note.isDeleted));
+    }
+
+    // Поиск
+    if (filters.search.trim()) {
+      const query = filters.search.toLowerCase();
+    
+      result = result.filter(note => {
+        const plainText = stripHtml(note.content).toLowerCase()
+        return note.title.toLowerCase().includes(query) || plainText.includes(query)
+      }
+        
+      );
+    }
+
+    // Сортировка Select
+    if (filters.sort === 'updated') {
+      
+    } 
+
+    if (filters.sort === 'facorites') {
+
+    }
+
+    if (filters.sort === 'created') {
+      
     }
 
     return result
@@ -119,7 +135,22 @@ function NotesList(props) {
         </div>
       </div>
       <hr className="notes-list-hr"/>
-      
+      <div>
+        <select 
+          value={filters.sort}
+          onChange={(e) => {
+            setFilters(prev => {
+            console.log(filters.sort)
+            return {...prev,
+              sort: e.target.value}              
+            })
+        }}
+        >
+          <option value="updated">Последние изменения</option>
+          <option value="favorites">Сначала избранные</option>
+          <option value="created">По дате создания</option>
+        </select>
+      </div>
       <ul 
         className ="notes-list-group">
         {filteredNotes.length > 0 ? filteredNotes.map(note => (

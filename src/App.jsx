@@ -13,7 +13,7 @@ function App() {
   const [filters, setFilters] = useState({
     category: 'all',
     search: '',
-    sortBy: 'updated'
+    sort: 'updated'
   });
 
   const [notes, setNotes] = useState(() => {

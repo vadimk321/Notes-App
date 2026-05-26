@@ -50,7 +50,7 @@ function Sidebar(props) {
         className="sidebar-button" 
         onClick={() => {
           const newNote = {
-            id: new Date().toISOString(),
+            id: crypto.randomUUID(),
             
             title: "",
             content: "",
