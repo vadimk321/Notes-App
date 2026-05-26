@@ -1,9 +1,6 @@
 function DateItem(props) {
 
-  const {
-          noteCreatedAt
-
-        } = props
+  const {noteCreatedAt} = props
 
   const months = {
     0: 'января',
@@ -20,22 +17,30 @@ function DateItem(props) {
     11: 'декабря',
 };
   
+  let formattedDate = '';
   const now = new Date();
+  const noteCreatedDate = new Date(noteCreatedAt);
 
-  // Начало дня
-  const startOfDay = new Date(
+  // Начало сегодняшнего дня
+  const today = new Date(
     now.getFullYear(),
     now.getMonth(),
     now.getDate()
   );
 
-  const noteCreatedDate = new Date(noteCreatedAt);
+  // Начало дня созданной заметки
+  const noteCreatedDay = new Date(
+    noteCreatedDate.getFullYear(),
+    noteCreatedDate.getMonth(),
+    noteCreatedDate.getDate()
+  );
+  
 
   // Сколько секунд прошло с момента создания заметки до сегодняшнего дня 00:00
-  const diffSecond = Math.floor((startOfDay - new Date(noteCreatedAt)) / 1000);
-  let formattedDate = ''
+  const different = Math.floor((today - noteCreatedDay) / (1000 * 60 * 60 * 24));
+  
 
-  if (diffSecond < 86400) {
+  if (different === 0) {
 
     if (noteCreatedDate.getMinutes() < 10) { // Пишется время в формате 14:55
       const minutes = `0${noteCreatedDate.getMinutes()}`;
@@ -46,10 +51,10 @@ function DateItem(props) {
     }
     
   }
-  else if (diffSecond >= 86400 && diffSecond < 172800) {
+  else if (different === 1) {
     formattedDate = 'Вчера'
   }
-  else if (diffSecond >= 172800 && noteCreatedDate.getFullYear() === now.getFullYear()) {
+  else if (different > 1 && noteCreatedDate.getFullYear() === now.getFullYear()) {
     formattedDate = `${noteCreatedDate.getDate()} ${months[noteCreatedDate.getMonth()]}` 
     // Пишется дата в формате 15 мая, если дата создания в этом году
   }
