@@ -273,6 +273,11 @@ ul li span {
   opacity: 0.8;
   cursor: default;
 }
+.note-item-wrapper.deleted:hover {
+  background-color: #111620;
+  box-shadow: none;
+  transition: 0.3s;
+}
 
 .note-item-wrapper li {
   pointer-events: none;

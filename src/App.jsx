@@ -13,7 +13,7 @@ function App() {
   const [filters, setFilters] = useState({
     category: 'all',
     search: '',
-    // sortBy: 'updated'
+    sortBy: 'updated'
   });
 
   const [notes, setNotes] = useState(() => {
@@ -110,13 +110,14 @@ function App() {
 
   function exitEditor(filter) {
 
-    const plainText = stripHtml(editingNote.content).trim();
+    if (editingNote) {
+      const plainText = stripHtml(editingNote.content).trim();
 
-
-
-    // Проверка на пустую заполняемую заметку
-    if (editingNote && !editingNote.title && plainText) {
-      setNotes(prev => prev.filter(item => item.id !== editingNote.id));
+      // Проверка на пустую заполняемую заметку
+      if (!editingNote.title.trim() && !plainText) {
+      
+          setNotes(prev => prev.filter(item => item.id !== editingNote.id));
+      }
     }
 
     setEditingId(null);
