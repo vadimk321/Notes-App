@@ -148,8 +148,9 @@ function NotesList(props) {
         </div>
       </div>
       <hr className="notes-list-hr"/>
-      <div>
+      <div className="select-sort-wrapper">
         <select 
+          className="select-sort"
           value={filters.sort}
           onChange={(e) => {
             setFilters(prev => {

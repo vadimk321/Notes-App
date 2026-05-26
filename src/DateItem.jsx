@@ -36,7 +36,7 @@ function DateItem(props) {
   );
   
 
-  // Сколько секунд прошло с момента создания заметки до сегодняшнего дня 00:00
+  // Разница в днях
   const different = Math.floor((today - noteCreatedDay) / (1000 * 60 * 60 * 24));
   
 
