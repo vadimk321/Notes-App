@@ -1,12 +1,12 @@
- import { useMemo } from 'react'
- import { stripHtml } from './utils/stripHtml.js';
+import { useMemo } from 'react'
 import NoteItem from './NoteItem.jsx'
+import {getCategoryTitle} from './utils/getCategoryTitle.js'
+import {getFilteredNotes} from './utils/getFilteredNotes.js'
 
 function NotesList(props) {
   
   const {
     notes,
-    setNotes,
     filters,
     allTags,
     deleteNote,
@@ -20,92 +20,12 @@ function NotesList(props) {
   let isHasTag = (allTags.find(tag => tag.id === filters.category));
 
   // Название текущего раздела.
-  const categorySubtitle = useMemo(() => {
-    
-    let category = '';
-    
-    if (filters.category === 'all') {
-      category = 'Все заметки';
-    }
-
-    if (filters.category === 'favorites') {
-      category = 'Избранные';
-    }
-
-    if (filters.category === 'deleted') {
-      category = 'Корзина';
-    }
-
-     if (isHasTag !== undefined) {
-      category = isHasTag.text;
-     }
-
-    return category
-  }, [filters])
+  const categorySubtitle = getCategoryTitle(filters.category, allTags);
 
   // Фильтрация заметок
   const filteredNotes = useMemo(() => {
-    
-    let result = [...notes];
-
-    
-    // Категория || Теги
-    if (filters.category === 'all') {
-      result = result.filter(note => !note.isDeleted);
-    }
-
-    if (filters.category === 'favorites') {
-      result = result.filter(note => note.isFavorite);
-    }
-
-    if (filters.category === 'deleted') {
-      result = result.filter(note => note.isDeleted);
-    }
-
-    if (isHasTag !== undefined) {
-      result = (result.filter(note => note.tags.includes(filters.category)).filter(note => !note.isDeleted));
-    }
-
-    // Поиск
-    if (filters.search.trim()) {
-      const query = filters.search.toLowerCase();
-    
-      result = result.filter(note => {
-        const plainText = stripHtml(note.content).toLowerCase()
-        return note.title.toLowerCase().includes(query) || plainText.includes(query)
-      }
-        
-      );
-    }
-
-
-    // Сортировка Select
-
-    // Последние изменения
-    if (filters.sort === 'updated') {
-      result = result.sort((a, b) => {
-        return new Date(b.updatedAt) - new Date(a.updatedAt);
-      })
-    } 
-    // Сначала избранные
-    if (filters.sort === 'favorites') {
-      result = result.sort((a, b) => {
-        if (b.isFavorite !== a.isFavorite) {
-          return b.isFavorite - a.isFavorite;
-        }
-
-        return new Date(b.updatedAt) - new Date(a.updatedAt);
-      })
-    }
-    // По дате создания
-    if (filters.sort === 'created') {
-       result = result.sort((a, b) => {
-        return new Date(b.createdAt) - new Date(a.createdAt);
-      })
-    }
-
-    return result
-  }, [notes, filters])
+    return getFilteredNotes(notes, filters, isHasTag)
+  }, [notes, filters, isHasTag])
 
   return (
     <div className="notes-list-wrapper"> 
@@ -169,7 +89,6 @@ function NotesList(props) {
         {filteredNotes.length > 0 ? filteredNotes.map(note => (
           <NoteItem 
             note={note}
-            setNotes={setNotes}
             key={note.id + note.createdAt}
             deleteNote={deleteNote}
             toggleFavorite={toggleFavorite}

@@ -44,6 +44,8 @@ function App() {
   // Нужен для передачи в едитор при клике на таск
   const editingNote = notes.find(n => n.id === editingId);
 
+
+
   useEffect(() => {
     localStorage.setItem('notes', JSON.stringify(notes))
   }, [notes]);
@@ -51,6 +53,23 @@ function App() {
   useEffect(() => {
     localStorage.setItem('tags', JSON.stringify(allTags))
   }, [allTags]);
+
+    function handlerDeleteNote(id) {
+    setNotes(prev => deleteNote(prev, id));
+  }
+
+  function handlerRestoreNote(id) { 
+    setNotes(prev => restoreNote(prev, id));
+  }
+
+  function handlerToggleFavorite(id) {
+    setNotes(prev => toggleFavorite(prev, id));
+  }
+
+  
+  function handlerToggleTag(tagId, noteId) {
+    setNotes(prev => toggleTag(prev, tagId, noteId))
+  }
 
   function deleteTag(tagId) {
     setNotes(prev => removeTagFromNotes(prev, tagId));
@@ -105,20 +124,18 @@ function App() {
           exitEditor={exitEditor}
           setAllTags={setAllTags}
           allTags={allTags}
-          toggleTag={toggleTag}
-          toggleFavorite={toggleFavorite}
+          toggleTag={handlerToggleTag}
+          toggleFavorite={handlerToggleFavorite}
         /> 
         : <NotesList 
           notes={notes} 
           filters={filters}
-          deleteNote={deleteNote}
-          toggleFavorite={toggleFavorite}
-          setFilters={setFilters}
-          restoreNote={restoreNote}
-          setEditingId={setEditingId}
           allTags={allTags}
+          deleteNote={handlerDeleteNote}
+          toggleFavorite={handlerToggleFavorite}
+          restoreNote={handlerRestoreNote}
+          setEditingId={setEditingId}
           deleteTag={deleteTag}
-          setNotes={setNotes}
         />}
       </div>
   )

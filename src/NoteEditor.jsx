@@ -68,14 +68,6 @@ function NoteEditor(props) {
   // Для фикса закрытия PopUp при клике вне окна на кнопку "добавить тег"
   const buttonRef = useRef(null);
 
-  function handleToggleTag(tagId, noteId) {
-    setNotes(prev => toggleTag(prev, tagId, noteId))
-  }
-
-  function handlerToggleFavorite(noteId) {
-    setNotes(prev => toggleFavorite(prev, noteId));
-  }
-
   function handleChange(field, value) {
     setNotes(prev =>
       prev.map(item =>
@@ -111,7 +103,7 @@ function NoteEditor(props) {
           <TagItem 
             tag={tag}
             key={tag.id}
-            onClick={() => handleToggleTag(tag.id, note.id)}
+            onClick={() => toggleTag(tag.id, note.id)}
             isSelected={note.tags.includes(tag.id)}
           />) : null}
           <button 
@@ -142,7 +134,7 @@ function NoteEditor(props) {
       
       <div className="new-note-status-wrapper"> 
         <button
-          onClick={() => {handlerToggleFavorite(note.id);}}
+          onClick={() => {toggleFavorite(note.id);}}
           className="note-editor-star-btn">
           <StarIcon  
             filled={note.isFavorite}
