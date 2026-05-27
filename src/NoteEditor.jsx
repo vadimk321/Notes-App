@@ -9,7 +9,7 @@ import EditorToolbar from './EditorToolbar.jsx'
 import NoteInputTitle from './NoteInputTitle.jsx'
 import TagItem from './TagItem.jsx'
 import AddTagPopup from './AddTagPopup.jsx'
-import StarIcon from './StarIcon.jsx'
+import StarIcon from './icons/StarIcon.jsx'
 
 
 function NoteEditor(props) {

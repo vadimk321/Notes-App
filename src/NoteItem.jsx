@@ -1,7 +1,7 @@
 // import { useState } from 'react'
-import StarIcon from './StarIcon.jsx';
-import DeleteIcon from './DeleteIcon.jsx';
-import RestoreIcon from './RestoreIcon.jsx';
+import StarIcon from './icons/StarIcon.jsx';
+import DeleteIcon from './icons/DeleteIcon.jsx';
+import RestoreIcon from './icons/RestoreIcon.jsx';
 import TagNoteItem from './TagNoteItem.jsx';
 import DateItem from './DateItem.jsx'
 
