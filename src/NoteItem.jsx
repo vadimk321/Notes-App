@@ -9,6 +9,7 @@ function NoteItem(props) {
   
   const {
     note,
+    setNotes,
     deleteNote,
     toggleFavorite,
     setFilters,
@@ -23,12 +24,12 @@ function NoteItem(props) {
   
   function handlerDeleteNote(e, id) {
     e.stopPropagation();
-    deleteNote(id);
+    setNotes(prev => deleteNote(prev, id));
   }
 
   function handlerRestoreNote(e, id) { 
     e.stopPropagation();
-    restoreNote(id);
+    setNotes(prev => restoreNote(prev, id));
   }
 
   function editNote(){
@@ -42,10 +43,9 @@ function NoteItem(props) {
     }))
   }
 
-  function handlerToggleFavorite(e) {
+  function handlerToggleFavorite(e, id) {
     e.stopPropagation();
-    toggleFavorite(note.id);
-    console.log(testDate)
+    setNotes(prev => toggleFavorite(prev, id));
   }
 
   return (
@@ -90,7 +90,7 @@ function NoteItem(props) {
           noteCreatedAt={note.createdAt}/>
           {!note.isDeleted 
           ? <button
-            onClick={(e) => {handlerToggleFavorite(e);}}
+            onClick={(e) => {handlerToggleFavorite(e, note.id);}}
             className="note-item-star-btn"
           >
             <StarIcon  filled={note.isFavorite}/>

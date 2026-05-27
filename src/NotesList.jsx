@@ -6,6 +6,7 @@ function NotesList(props) {
   
   const {
     notes,
+    setNotes,
     filters,
     allTags,
     deleteNote,
@@ -154,12 +155,10 @@ function NotesList(props) {
           value={filters.sort}
           onChange={(e) => {
             setFilters(prev => {
-            console.log(filters.sort)
-            return {...prev,
-              sort: e.target.value}              
-            })
-        }}
-        >
+              return {...prev,
+                sort: e.target.value}              
+              })
+          }}>
           <option value="updated">Последние изменения</option>
           <option value="favorites">Сначала избранные</option>
           <option value="created">По дате создания</option>
@@ -170,6 +169,7 @@ function NotesList(props) {
         {filteredNotes.length > 0 ? filteredNotes.map(note => (
           <NoteItem 
             note={note}
+            setNotes={setNotes}
             key={note.id + note.createdAt}
             deleteNote={deleteNote}
             toggleFavorite={toggleFavorite}

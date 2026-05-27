@@ -47,31 +47,34 @@ function NoteEditor(props) {
     content: note.content || '',
 
     onUpdate: ({ editor }) => {
-
       handleChange(
         'content',
         editor.getHTML()
       );
     },
-});
+  });
 
   useEffect(() => {
-
-  if (
-    editor &&
-    note.content !== editor.getHTML()
-  ) {
-    editor.commands.setContent(
-      note.content || ''
-    );
-  }
-
-}, [note.id, editor]);
+    if (
+      editor &&
+      note.content !== editor.getHTML()
+    ) {
+      editor.commands.setContent(
+        note.content || ''
+      );
+    }
+  }, [note.id, editor]);
 
   // Для фикса закрытия PopUp при клике вне окна на кнопку "добавить тег"
   const buttonRef = useRef(null);
 
+  function handleToggleTag(tagId, noteId) {
+    setNotes(prev => toggleTag(prev, tagId, noteId))
+  }
 
+  function handlerToggleFavorite(noteId) {
+    setNotes(prev => toggleFavorite(prev, noteId));
+  }
 
   function handleChange(field, value) {
     setNotes(prev =>
@@ -81,17 +84,12 @@ function NoteEditor(props) {
           ...item,
           [field]: value,
           updatedAt: new Date().toISOString(),
-        }
-        : item
+        } : item
       )
     )
   }
 
-  function handlerToggleFavorite(id) {
-    toggleFavorite(id)
-  }
-
-
+  
   return (
     <div className="new-note-wrapper">
       <div className="new-note-title-wrapper">
@@ -111,9 +109,9 @@ function NoteEditor(props) {
         <ul>
           {allTags ? allTags.map((tag) => 
           <TagItem 
-            tag={tag} 
+            tag={tag}
             key={tag.id}
-            onClick={() => toggleTag(tag.id, note.id)}
+            onClick={() => handleToggleTag(tag.id, note.id)}
             isSelected={note.tags.includes(tag.id)}
           />) : null}
           <button 
