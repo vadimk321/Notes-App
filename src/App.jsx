@@ -99,6 +99,7 @@ function App() {
     setFilters(prev => ({
       ...prev,
       category: filter,
+      search: '',
     }));
   }
 

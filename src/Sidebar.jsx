@@ -20,6 +20,9 @@ function Sidebar(props) {
 
   const [searchValue, setSearchValue] = useState('')
 
+  useEffect(() => {
+    setSearchValue(filters.search);
+  }, [filters.search]);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
