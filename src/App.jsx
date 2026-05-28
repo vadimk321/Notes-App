@@ -131,6 +131,7 @@ function App() {
         : <NotesList 
           notes={notes} 
           filters={filters}
+          setFilters={setFilters}
           allTags={allTags}
           deleteNote={deleteNote}
           toggleFavorite={toggleFavorite}

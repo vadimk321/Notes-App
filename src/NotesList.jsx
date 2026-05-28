@@ -8,10 +8,10 @@ function NotesList(props) {
   const {
     notes,
     filters,
+    setFilters,
     allTags,
     deleteNote,
     toggleFavorite,
-    setFilters,
     restoreNote,
     setEditingId,
     deleteTag
@@ -74,6 +74,7 @@ function NotesList(props) {
           className="select-sort"
           value={filters.sort}
           onChange={(e) => {
+            console.log(filters)
             setFilters(prev => {
               return {...prev,
                 sort: e.target.value}              
