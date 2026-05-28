@@ -1,3 +1,4 @@
+import React from 'react';
 import StarIcon from './icons/StarIcon.jsx';
 import DeleteIcon from './icons/DeleteIcon.jsx';
 import RestoreIcon from './icons/RestoreIcon.jsx';
@@ -100,4 +101,4 @@ function NoteItem(props) {
   )
 }
 
-export default NoteItem
+export default React.memo(NoteItem);

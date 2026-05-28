@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { stripHtml } from './utils/stripHtml.js';
 import { 
-  deleteNote, 
-  restoreNote, 
-  toggleFavorite, 
-  toggleTag, 
-  removeTagFromNotes
+  deleteNoteAction, 
+  restoreNoteAction, 
+  toggleFavoriteAction, 
+  toggleTagAction, 
+  removeTagFromNotesAction
  } from './utils/noteActions.js'
 
 import Sidebar from './Sidebar.jsx';
@@ -54,22 +54,22 @@ function App() {
     localStorage.setItem('tags', JSON.stringify(allTags))
   }, [allTags]);
 
-    function handlerDeleteNote(id) {
-    setNotes(prev => deleteNote(prev, id));
-  }
+  const deleteNote = useCallback((id) => {
+    setNotes(prev => deleteNoteAction(prev, id));
+  }, [])
 
-  function handlerRestoreNote(id) { 
-    setNotes(prev => restoreNote(prev, id));
-  }
+  const restoreNote = useCallback((id) => { 
+    setNotes(prev => restoreNoteAction(prev, id));
+  })
 
-  function handlerToggleFavorite(id) {
-    setNotes(prev => toggleFavorite(prev, id));
-  }
+  const toggleFavorite = useCallback((id) => {
+    setNotes(prev => toggleFavoriteAction(prev, id));
+  })
 
   
-  function handlerToggleTag(tagId, noteId) {
+  const toggleTag = useCallback((tagId, noteId) => {
     setNotes(prev => toggleTag(prev, tagId, noteId))
-  }
+  })
 
   function deleteTag(tagId) {
     setNotes(prev => removeTagFromNotes(prev, tagId));
@@ -125,16 +125,16 @@ function App() {
           exitEditor={exitEditor}
           setAllTags={setAllTags}
           allTags={allTags}
-          toggleTag={handlerToggleTag}
-          toggleFavorite={handlerToggleFavorite}
+          toggleTag={toggleTag}
+          toggleFavorite={toggleFavorite}
         /> 
         : <NotesList 
           notes={notes} 
           filters={filters}
           allTags={allTags}
-          deleteNote={handlerDeleteNote}
-          toggleFavorite={handlerToggleFavorite}
-          restoreNote={handlerRestoreNote}
+          deleteNote={deleteNote}
+          toggleFavorite={toggleFavorite}
+          restoreNote={restoreNote}
           setEditingId={setEditingId}
           deleteTag={deleteTag}
         />}

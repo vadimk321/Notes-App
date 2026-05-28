@@ -1,4 +1,4 @@
-export function deleteNote(notes, id) {
+export function deleteNoteAction(notes, id) {
     return notes.map(note =>
       note.id === id
         ? { ...note, isDeleted: true,   isFavorite: false }
@@ -6,7 +6,7 @@ export function deleteNote(notes, id) {
     );
 }
 
-export function restoreNote(notes, id) {
+export function restoreNoteAction(notes, id) {
     return notes.map(note => note.id === id 
       ? {
         ...note,
@@ -15,7 +15,7 @@ export function restoreNote(notes, id) {
       : note);
 }
 
-export function toggleFavorite(notes, id) {
+export function toggleFavoriteAction(notes, id) {
     return notes.map(note =>
       note.id === id
         ? { ...note, isFavorite: !note.isFavorite }
@@ -23,7 +23,7 @@ export function toggleFavorite(notes, id) {
     )
 };
 
-export function toggleTag(notes, idTag, idNote) {
+export function toggleTagAction(notes, idTag, idNote) {
     const resultNote = notes.find(note => note.id === idNote); 
     const isHasTag = resultNote.tags.includes(idTag);
 
@@ -46,7 +46,7 @@ export function toggleTag(notes, idTag, idNote) {
       })
 };
 
-export function removeTagFromNotes(notes, tagId) {
+export function removeTagFromNotesAction(notes, tagId) {
     return notes.map(note => ({
       ...note,
       tags: note.tags.filter(tag => tag !== tagId)
