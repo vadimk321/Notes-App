@@ -68,11 +68,11 @@ function App() {
 
   
   const toggleTag = useCallback((tagId, noteId) => {
-    setNotes(prev => toggleTag(prev, tagId, noteId))
+    setNotes(prev => toggleTagAction(prev, tagId, noteId))
   })
 
   function deleteTag(tagId) {
-    setNotes(prev => removeTagFromNotes(prev, tagId));
+    setNotes(prev => removeTagFromNotesAction(prev, tagId));
 
     setAllTags(prev => 
       prev.filter(tag => tag.id !== tagId));
