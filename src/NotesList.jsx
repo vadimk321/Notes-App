@@ -32,7 +32,7 @@ function NotesList(props) {
       <div className="notes-list-title">
         <div>
           <div className="subtitle-delete-tag-wrapper">
-            <h2>{categorySubtitle}</h2>
+            <h2 className="subtitle-category-name">{categorySubtitle}</h2>
             {isHasTag !== undefined ? 
             <button className="delete-tag-btn" onClick={() => deleteTag(isHasTag.id)}>
               <svg

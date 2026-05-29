@@ -60,7 +60,6 @@ function Sidebar(props) {
             createdAt: new Date().toISOString(),
             updatedAt: new Date().toISOString(),
             tags: [],
-            isPinned: false,
             isFavorite: false,
             isDeleted: false,
           };

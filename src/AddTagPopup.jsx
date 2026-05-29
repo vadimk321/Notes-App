@@ -84,7 +84,7 @@ function AddTagPopup(props) {
               type="text" 
               value={addTagInput}
               onChange={(e) => setAddTagInput(e.target.value)}
-              className={`${addTagInput.length >= 10 ? 'add-tag-input-blocked' : null}`}
+              className={`add-tag-input ${addTagInput.length >= 10 ? 'blocked' : ''}`}
               onKeyDown={(e) => {
               if (e.key === 'Enter') {
                 if (addTagInput.length >= 10) {
@@ -117,8 +117,10 @@ function AddTagPopup(props) {
             Отмена</button>
           <button 
             onClick={() => handleAddTag()} 
-            disabled={addTagInput.length >= 10}
-            >
+            disabled={
+              addTagInput.trim().length === 0 ||
+              addTagInput.trim().length >= 10
+            }>
               Создать
             </button>
           </div>
